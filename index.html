@@ -577,6 +577,74 @@ body.light .blk.mrp { color: #9a4510; }
 .mrp-strip { font-size: .8rem; color: var(--text-muted); padding: .45rem .7rem; margin: 0 0 .6rem; border-radius: var(--radius-sm); background: rgba(197,90,17,.1); border-left: 3px solid #c55a11; }
 tr.done-row td { opacity: .6; }
 
+/* ===== Responsive: tablet & mobile ===== */
+.nav-btn, .nav-backdrop { display: none; }
+.proto-tools { display: contents; }
+img, svg, canvas { max-width: 100%; }
+@media (max-width: 900px) {
+  .nav-btn { display: inline-flex; } body.frame-none .nav-btn { display: none; }
+  .nav-backdrop { position: fixed; inset: 0; z-index: 39; background: rgba(15,23,42,.5); }
+  body.nav-open .nav-backdrop { display: block; }
+  .sidenav { display: block; position: fixed; top: 0; left: 0; bottom: 0; height: 100%; width: min(280px, 85vw); z-index: 40;
+    transform: translateX(-100%); transition: transform .2s; box-shadow: var(--shadow); }
+  body.nav-open .sidenav { transform: none; }
+  body.nav-open { overflow: hidden; }
+  body.index-open .stage { margin-left: 0; }
+  .screen-index { top: 0; z-index: 41; width: min(280px, 85vw); box-shadow: var(--shadow); }
+  .mc-main { padding: 0 1rem 1.5rem; }
+  .shell .product-name { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .shell .divider { display: none; }
+  .shell { height: auto; min-height: 48px; flex-wrap: wrap; row-gap: .2rem; column-gap: .4rem; padding: .3rem .6rem; }
+  .shell .proto-tag { display: none; }
+  .shell .product-name { flex: 1; order: 1; font-size: .9rem; }
+  .shell .nav-btn, .shell .app-mark { order: 0; }
+  .shell .joule-btn, .shell .bell, .shell .avatar { order: 2; }
+  .shell .shell-spacer { order: 3; flex-basis: 100%; height: 0; }
+  .shell #toggleIndex { order: 4; }
+  .proto-tools { order: 5; flex: 1; min-width: 0; display: flex; align-items: center; gap: .3rem; overflow-x: auto; scrollbar-width: none; }
+  .proto-tools::-webkit-scrollbar { display: none; }
+  .proto-tools > * { flex: none; }
+  .shell .role-switch select { max-width: 150px; font-size: .78rem; }
+  .shell .icon-btn, .shell .tool-btn { padding: .4rem; }
+  .tool-btn span, .role-switch > span { display: none; }
+  /* wide tables scroll inside their card instead of stretching the page */
+  .table, .matrix { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .table th, .table td { white-space: nowrap; }
+  .card, .area, .twin-row { min-width: 0; }
+  .twin-row { grid-template-columns: minmax(0, 1fr) !important; }
+  .gantt { display: grid; overflow-x: auto; }
+  .hbar { grid-template-columns: 90px minmax(0, 1fr) 60px; }
+  #ordSearch { min-width: 0 !important; width: 100%; }
+  .joule { top: 0; right: 0; bottom: 0; left: 0; width: auto; max-width: none; border-radius: 0; border: 0; }
+  .chat-page { height: calc(100dvh - 200px); min-height: 420px; }
+  .tabs { scrollbar-width: none; } .tabs::-webkit-scrollbar { display: none; }
+}
+@media (max-width: 600px) {
+  .sidenav { top: 0; }
+  .mc-main { padding: 0 .75rem 1.25rem; }
+  .mc-header .crumbs { gap: .5rem; }
+  .pill-select { flex-wrap: wrap; }
+  .mc-title h1 { font-size: 1.35rem; }
+  .mc-title .ask-btn { width: 100%; justify-content: center; }
+  .gfilters { padding: .6rem; }
+  .gfilters label { flex: 1 1 calc(50% - .5rem); min-width: 0; }
+  .gfilters select { min-width: 0; flex: 1; }
+  .kpis, .kpis.k4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .kpi { padding: .7rem .75rem; } .kpi .val { font-size: 1.35rem; }
+  .chain { grid-template-columns: minmax(0, 1fr); }
+  .tiles { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .obj-head .facts { gap: 1rem; }
+  .card-head .legend { flex-wrap: wrap; }
+  .dialog { padding: 1rem; max-height: 90dvh; }
+  .dialog-actions, .form-actions { flex-wrap: wrap; }
+  .toast-host { left: .75rem; right: .75rem; transform: none; }
+  .rstep { min-width: 96px; }
+}
+@media (hover: none) and (pointer: coarse) {
+  .sidenav a, .tabs a { padding-top: .7rem; padding-bottom: .7rem; }
+  .gfilters select, .pill-select select, .pill-select button, input, select, textarea { font-size: 16px; } /* stops iOS zoom-on-focus */
+}
+
 </style>
 </head>
 <body>
@@ -608,6 +676,9 @@ tr.done-row td { opacity: .6; }
 
 <!-- ============ SHELL (sap.f.ShellBar + prototype tools) ============ -->
 <header class="shell">
+  <button class="icon-btn nav-btn" id="toggleNav" title="Menu" aria-label="Open navigation" aria-controls="sidenav" aria-expanded="false">
+    <svg viewBox="0 0 24 24"><use href="#i-list"/></svg>
+  </button>
   <button class="icon-btn" id="toggleIndex" title="Prototype screen index" aria-label="Screen index">
     <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
   </button>
@@ -620,6 +691,7 @@ tr.done-row td { opacity: .6; }
     <svg viewBox="0 0 24 24"><use href="#i-spark"/></svg><span>Agent</span></button>
   <button class="icon-btn bell" id="shellBell" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24"><use href="#i-bell"/></svg><span class="dot" id="bellCount">2</span></button>
   <span class="divider"></span>
+  <div class="proto-tools">
   <label class="role-switch" title="Show the app as delivered in a release" data-note-label="Release view" data-note="Prototype only: 'Release 1 · Pilot' shows what goes live in week 16 for one production area; Release 2 capabilities are greyed out. 'R1 + R2 · MVP' shows the full MVP (week 32). Tags on every screen show where each feature lands." data-req="REQ-28">
     <span>Release</span>
     <select id="relSel"><option value="all">R1 + R2 · MVP</option><option value="r1">Release 1 · Pilot</option></select>
@@ -638,10 +710,12 @@ tr.done-row td { opacity: .6; }
   <button class="tool-btn" id="openAssumptions" title="Assumptions & open questions">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg><span>Assumptions</span>
   </button>
+  </div>
   <span class="avatar" id="avatar">KW</span>
 </header>
 
 <nav class="screen-index" id="screenIndex" aria-label="Screen index"></nav>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <main class="stage" id="stage">
 <div class="mc-app">
@@ -1487,6 +1561,16 @@ window.PROTO = {
   }
   function markActive() { $$("#screenIndex a").forEach(a => a.classList.toggle("active", a.dataset.id === App.current)); }
   $("#toggleIndex").addEventListener("click", () => document.body.classList.toggle("index-open"));
+
+  /* ---------- Mobile navigation drawer ---------- */
+  const setNav = (open) => { document.body.classList.toggle("nav-open", open); $("#toggleNav").setAttribute("aria-expanded", open); };
+  $("#toggleNav").addEventListener("click", () => setNav(!document.body.classList.contains("nav-open")));
+  $("#navBackdrop").addEventListener("click", () => setNav(false));
+  $("#sidenav").addEventListener("click", (e) => { if (e.target.closest("a")) setNav(false); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
+  const narrow = window.matchMedia("(max-width: 900px)");
+  $("#screenIndex").addEventListener("click", (e) => { if (narrow.matches && e.target.closest("a")) document.body.classList.remove("index-open"); });
+  narrow.addEventListener("change", (e) => { if (!e.matches) setNav(false); });
 
   /* ---------- Router ---------- */
   App.go = (target) => { location.hash = "#/" + target; };
