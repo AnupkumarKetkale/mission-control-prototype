@@ -569,6 +569,13 @@ body.rel1 #sidenav a[data-rel="R2"], body.rel1 #sidenav a[data-rel="RO"], body.r
 .twin-head { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; margin: 0 0 .5rem; color: var(--text-muted); }
 .twin-head b { color: var(--text); }
 .r2area { cursor: pointer; border-style: dashed; }
+/* MRP */
+.blk.mrp { background: repeating-linear-gradient(135deg, rgba(197,90,17,.18) 0 6px, rgba(197,90,17,.06) 6px 12px); color: #e08a4a; border: 1px dashed #c55a11; }
+body.light .blk.mrp { color: #9a4510; }
+.dot-mrp { background: repeating-linear-gradient(135deg, #c55a11 0 2px, transparent 2px 4px); border: 1px dashed #c55a11; border-radius: 2px !important; }
+.mrp-toggle { display: inline-flex; align-items: center; gap: .35rem; cursor: pointer; white-space: nowrap; }
+.mrp-strip { font-size: .8rem; color: var(--text-muted); padding: .45rem .7rem; margin: 0 0 .6rem; border-radius: var(--radius-sm); background: rgba(197,90,17,.1); border-left: 3px solid #c55a11; }
+tr.done-row td { opacity: .6; }
 
 /* ===== Responsive: tablet & mobile ===== */
 .nav-btn, .nav-backdrop { display: none; }
@@ -680,14 +687,14 @@ img, svg, canvas { max-width: 100%; }
   <span class="plant-name" id="shellPlant">Global Manufacturing · Plant 1010 Houston</span>
   <span class="proto-tag">Prototype</span>
   <div class="shell-spacer"></div>
-  <button class="joule-btn" id="shellJoule" data-note-label="Joule" data-note="Joule entry point in the shell bar (SAP Joule). Opens the Cherrywork Operations Agent with the current screen as context." data-req="REQ-22">
-    <svg viewBox="0 0 24 24"><use href="#i-spark"/></svg><span>Joule</span></button>
+  <button class="joule-btn" id="shellJoule" data-note-label="Operations Agent" data-note="Operations Agent entry point in the shell bar. Opens the Cherrywork Operations Agent (SAP AI Core) with the current screen as context." data-req="REQ-22">
+    <svg viewBox="0 0 24 24"><use href="#i-spark"/></svg><span>Agent</span></button>
   <button class="icon-btn bell" id="shellBell" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24"><use href="#i-bell"/></svg><span class="dot" id="bellCount">2</span></button>
   <span class="divider"></span>
   <div class="proto-tools">
-  <label class="role-switch" title="Show the app as delivered in a release" data-note-label="Release view" data-note="Prototype only: 'Release 1 · PoC' shows what goes live in week 10 for one production area; Release 2 capabilities are greyed out. 'R1 + R2 · MVP' shows the full MVP (week 22). Tags on every screen show where each feature lands." data-req="REQ-28">
+  <label class="role-switch" title="Show the app as delivered in a release" data-note-label="Release view" data-note="Prototype only: 'Release 1 · Pilot' shows what goes live in week 16 for one production area; Release 2 capabilities are greyed out. 'R1 + R2 · MVP' shows the full MVP (week 32). Tags on every screen show where each feature lands." data-req="REQ-28">
     <span>Release</span>
-    <select id="relSel"><option value="all">R1 + R2 · MVP</option><option value="r1">Release 1 · PoC</option></select>
+    <select id="relSel"><option value="all">R1 + R2 · MVP</option><option value="r1">Release 1 · Pilot</option></select>
   </label>
   <label class="role-switch" title="View as role" data-note-label="Role switcher" data-note="Prototype only: switches persona. In build, roles come from BTP role collections mapped to SLB identity groups." data-req="REQ-27">
     <span>Role</span>
@@ -721,7 +728,7 @@ img, svg, canvas { max-width: 100%; }
     <a href="#/order-summary" data-rel="R1" data-nav="order-summary,order-detail"><svg viewBox="0 0 24 24"><use href="#i-list"/></svg>Order Summary</a>
     <a href="#/operation-summary" data-rel="R1" data-nav="operation-summary"><svg viewBox="0 0 24 24"><use href="#i-pulse"/></svg>Operation Summary</a>
     <a href="#/area-summary" data-rel="R1" data-nav="area-summary,workcenter"><svg viewBox="0 0 24 24"><use href="#i-layers"/></svg>Area &amp; Work Center</a>
-    <a href="#/schedule" data-rel="R1" data-nav="schedule"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg>Schedule</a>
+    <a href="#/schedule" data-rel="R2" data-nav="schedule"><svg viewBox="0 0 24 24"><use href="#i-cal"/></svg>Schedule</a>
     <h4>Control</h4>
     <a href="#/shortages" data-rel="R1" data-nav="shortages,shortage-detail"><svg viewBox="0 0 24 24"><use href="#i-alert"/></svg>Shortages Analyzer<span class="count" id="navShort">8</span></a>
     <a href="#/approvals" data-rel="R1" data-nav="approvals"><svg viewBox="0 0 24 24"><use href="#i-inbox"/></svg>Actions &amp; Approvals<span class="count" id="navAppr">2</span></a>
@@ -754,14 +761,14 @@ img, svg, canvas { max-width: 100%; }
           <h1>Manufacturing Mission Control</h1>
           <p>Existing order-management capabilities, extended with a digital shopfloor twin and agentic operations intelligence.</p>
         </div>
-        <button class="ask-btn" data-ask="" data-note-label="Ask Operations Agent" data-note="Opens Joule with the Cherrywork Operations Agent. Context (plant, filters, current object) is passed to the agent automatically." data-req="REQ-22,REQ-05"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Ask Operations Agent</button>
+        <button class="ask-btn" data-ask="" data-note-label="Ask Operations Agent" data-note="Opens the Cherrywork Operations Agent. Context (plant, filters, current object) is passed to the agent automatically." data-req="REQ-22,REQ-05"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Ask Operations Agent</button>
       </div>
       <nav class="tabs" id="tabs" data-note-label="Tabs" data-note="sap.m.IconTabBar (header mode Inline). Same order as the reference screenshots. Each tab is its own route so it can be bookmarked and launched from Work Zone.">
         <a href="#/live-shopfloor" data-rel="R1" data-tab="live-shopfloor,workcenter">Digital Twin</a>
         <a href="#/order-summary" data-rel="R1" data-tab="order-summary,order-detail">Order Summary</a>
         <a href="#/operation-summary" data-rel="R1" data-tab="operation-summary">Operation Summary</a>
         <a href="#/area-summary" data-rel="R1" data-tab="area-summary">Area Summary</a>
-        <a href="#/schedule" data-rel="R1" data-tab="schedule">Schedule</a>
+        <a href="#/schedule" data-rel="R2" data-tab="schedule">Schedule</a>
         <a href="#/shortages" data-rel="R1" data-tab="shortages,shortage-detail">Shortages Analyzer</a>
         <a href="#/meetings" data-rel="R2" data-tab="meetings">Meeting Tracker</a>
       </nav>
@@ -786,7 +793,7 @@ img, svg, canvas { max-width: 100%; }
         <p class="muted">Plant 1010 Houston · Wednesday 21 October 2026 · Shift 1</p>
       </div>
       <div class="tiles" id="tiles" data-note-label="Launchpad tiles" data-note="Dynamic tiles in SAP Build Work Zone. Counts come from the Mission Control CAP service. Tiles are assigned per role through Work Zone roles; switch role to see the difference." data-req="REQ-27"></div>
-      <div class="sec-title">Insights from Joule</div>
+      <div class="sec-title">Insights from the Operations Agent</div>
       <div class="grid-3" id="lpInsights"></div>
     </section>
 
@@ -823,7 +830,7 @@ img, svg, canvas { max-width: 100%; }
     </section>
 
     <!-- 04 Work center detail -->
-    <section class="screen" data-screen="workcenter" data-rel="R1" data-title="Work Center Detail" data-group="Operations" data-filters="1" data-req="REQ-04,REQ-03,REQ-08">
+    <section class="screen" data-screen="workcenter" data-rel="R1" data-title="Work Center Detail" data-group="Operations" data-filters="1" data-req="REQ-04,REQ-03,REQ-08,REQ-29">
       <a class="back" href="#/live-shopfloor">← Digital Twin</a>
       <div class="obj-head" id="wcHead" data-note-label="Work center header" data-note="sap.uxap.ObjectPageLayout header. Facts: queue hours, WIP, load, output vs plan, OEE. Status from the same rules as the twin." data-req="REQ-04"></div>
       <div class="grid-2">
@@ -841,7 +848,7 @@ img, svg, canvas { max-width: 100%; }
           </div>
           <div class="card" id="wcAgentCard">
             <div class="card-head"><h2>Bottleneck analysis</h2><span class="chip j">Cherrywork agent</span></div>
-            <div id="wcAnalysis" class="mini" data-note-label="Bottleneck analysis" data-note="Produced by the OEE & Downtime Analysis Agent and Exception Investigator (Joule / SAP AI Core). Grounded on confirmations, queue history and machine states; refreshed on open." data-req="REQ-08"></div>
+            <div id="wcAnalysis" class="mini" data-note-label="Bottleneck analysis" data-note="Produced by the OEE & Downtime Analysis Agent and Exception Investigator (SAP AI Core). Grounded on confirmations, queue history and machine states; refreshed on open." data-req="REQ-08"></div>
           </div>
         </div>
       </div>
@@ -900,14 +907,13 @@ img, svg, canvas { max-width: 100%; }
     </section>
 
     <!-- 08 Schedule -->
-    <section class="screen" data-screen="schedule" data-rel="R1>R2" data-title="Schedule – Plan vs Execution" data-group="Operations" data-filters="1" data-req="REQ-19,REQ-20,REQ-21">
+    <section class="screen" data-screen="schedule" data-rel="R2" data-title="Schedule – Plan vs Execution" data-group="Operations" data-filters="1" data-req="REQ-19,REQ-20">
       <div class="kpis k4" id="schKpis"></div>
       <div class="card">
         <div class="card-head"><h2>Shop-floor schedule</h2>
-          <div class="obj-actions"><span class="legend"><span><i class="dot-i"></i>Planned</span><span><i class="dot-d"></i>Strategic (Class A)</span><span><i class="dot-d" style="background:var(--tint-danger);border:1px solid var(--danger)"></i>Over capacity</span></span>
-          <button class="ask-btn sm" data-ask="Rebalance Milling for the next 48 hours"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Rebalance with agent</button></div></div>
-        <div class="gantt" id="gantt" data-note-label="Schedule board" data-note="sap.gantt (GanttChartWithTable) by work center and shift. Capacity from S/4HANA work-center capacity + shift calendar. Cells over 100% are flagged. Click a block to simulate a move; approved moves are written back to S/4HANA." data-req="REQ-19,REQ-20"></div>
-        <p class="mini">Click an operation block to simulate moving it. Proposed moves appear dashed until approved and posted to SAP.</p>
+          <div class="obj-actions"><span class="legend"><span><i class="dot-i"></i>Planned</span><span><i class="dot-d"></i>Strategic (Class A)</span><span><i class="dot-d" style="background:var(--tint-danger);border:1px solid var(--danger)"></i>Over capacity</span></span></div></div>
+        <div class="gantt" id="gantt" data-note-label="Schedule board" data-note="sap.gantt (GanttChartWithTable) by work center and shift. Capacity from S/4HANA work-center capacity + shift calendar. Cells over 100% are flagged. View only: no rebalancing, what-if moves or rescheduling write-back." data-req="REQ-19,REQ-20"></div>
+        <p class="mini">View only: load by work center and shift, plan vs actual and adherence. Mission Control does not rebalance or reschedule orders.</p>
       </div>
       <div class="card">
         <div class="card-head"><h2>Execution against plan (today)</h2></div>
@@ -922,8 +928,9 @@ img, svg, canvas { max-width: 100%; }
       <div class="kpis k4" id="shKpis" data-note-label="Shortage KPIs" data-note="Shortage = open requirement (reservations within the need-date horizon) minus unrestricted plant stock, net of receipts before the requirement date." data-req="REQ-14"></div>
       <div class="card">
         <div class="card-head"><h2>Shortages Analyzer</h2>
-          <button class="ask-btn sm" data-ask="Generate a recovery plan for all high-risk shortages" data-note-label="Generate recovery plan" data-note="Calls the Shortage & Recovery Agent for all High-risk rows. Output is a ranked plan; nothing is posted without approval." data-req="REQ-18"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Generate recovery plan</button></div>
-        <table class="table" data-note-label="Shortages table" data-note="From the shortage-impact graph data product (BigQuery). Alternative = stock in other SLB plants (live MM read) or an approved alternate material. Click a row for impact and recovery options." data-req="REQ-14,REQ-15,REQ-17">
+          <div class="obj-actions">
+          <button class="ask-btn sm" data-ask="Generate a recovery plan for all high-risk shortages" data-note-label="Generate recovery plan" data-note="Calls the Shortage & Recovery Agent for all High-risk rows. Output is a ranked plan; nothing is posted without approval." data-req="REQ-18"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Generate recovery plan</button></div></div>
+                <table class="table" data-note-label="Shortages table" data-note="From the shortage-impact graph data product (BigQuery). Alternative = stock in other SLB plants (live MM read) or an approved alternate material. Click a row for impact and recovery options." data-req="REQ-14,REQ-15,REQ-17">
           <thead><tr><th>Component</th><th>Description</th><th class="num-cell">Plant stock</th><th class="num-cell">Demand</th><th class="num-cell">Affected orders</th><th>Next receipt</th><th>Alternative</th><th>Risk</th></tr></thead>
           <tbody id="shRows"></tbody></table>
         <div class="empty" id="shEmpty" hidden>No shortages for the current filters.</div>
@@ -1006,7 +1013,7 @@ img, svg, canvas { max-width: 100%; }
         <div>
           <div class="card">
             <div class="card-head"><h2>Tier-2 production meeting · today 07:30</h2>
-              <button class="ask-btn sm" id="mtGen" data-note-label="Generate agenda" data-note="Production Meeting Assistant builds the agenda from open signals, overdue actions and KPIs (Joule / SAP AI Core)." data-req="REQ-25"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Generate agenda</button></div>
+              <button class="ask-btn sm" id="mtGen" data-note-label="Generate agenda" data-note="Production Meeting Assistant builds the agenda from open signals, overdue actions and KPIs (SAP AI Core)." data-req="REQ-25"><svg viewBox="0 0 24 24"><use href="#i-spark"/></svg>Generate agenda</button></div>
             <ol class="flowsteps" id="mtAgenda"></ol>
           </div>
           <div class="card">
@@ -1026,9 +1033,9 @@ img, svg, canvas { max-width: 100%; }
     </section>
 
     <!-- 14 Operations Agent (full page) -->
-    <section class="screen" data-screen="agent" data-rel="R1>R2" data-title="Operations Agent (Joule)" data-group="Intelligence" data-filters="0" data-req="REQ-05,REQ-07,REQ-08,REQ-09,REQ-10,REQ-11,REQ-12,REQ-13,REQ-22">
+    <section class="screen" data-screen="agent" data-rel="R1>R2" data-title="Operations Agent" data-group="Intelligence" data-filters="0" data-req="REQ-05,REQ-07,REQ-08,REQ-09,REQ-10,REQ-11,REQ-12,REQ-13,REQ-22">
       <div class="grid-2">
-        <div class="card chat-page" id="agentPage" data-note-label="Agent conversation" data-note="Joule conversation with the Cherrywork Operations Agent (Joule Studio, SAP AI Core generative AI hub). Answers show the agents and MCP tools used, data sources and freshness, and next actions." data-req="REQ-05,REQ-22"></div>
+        <div class="card chat-page" id="agentPage" data-note-label="Agent conversation" data-note="Conversation with the Cherrywork Operations Agent (SAP AI Core generative AI hub). Answers show the agents and MCP tools used, data sources and freshness, and next actions." data-req="REQ-05,REQ-22"></div>
         <div>
           <div class="card">
             <div class="card-head"><h2>Try asking</h2></div>
@@ -1050,8 +1057,8 @@ img, svg, canvas { max-width: 100%; }
     <!-- 15 Agent hub -->
     <section class="screen" data-screen="agent-hub" data-rel="R1>R2" data-title="Cherrywork Agent Hub" data-group="Intelligence" data-filters="0" data-roles="admin,gpo,pm" data-req="REQ-08,REQ-22,REQ-27">
       <div class="kpis k4" id="hubKpis"></div>
-      <div class="sec-title">Cherrywork agents · Joule Studio on SAP AI Core</div>
-      <div class="grid-3" id="hubAgents" data-note-label="Agent catalogue" data-note="Agents built in Joule Studio, models served from SAP AI Core generative AI hub. Enable / disable is Admin only and is audited." data-req="REQ-08,REQ-22"></div>
+      <div class="sec-title">Cherrywork agents on SAP AI Core</div>
+      <div class="grid-3" id="hubAgents" data-note-label="Agent catalogue" data-note="Agents run on SAP AI Core; models served from the generative AI hub. Enable / disable is Admin only and is audited." data-req="REQ-08,REQ-22"></div>
       <div class="card" style="margin-top:1rem">
         <div class="card-head"><h2>MCP tool catalogue</h2><span class="mini">Shared by all agents</span></div>
         <table class="table" data-note-label="Tools" data-note="Tools exposed through the Model Context Protocol. Read tools are role-scoped; Propose tools only create write-back proposals." data-req="REQ-21">
@@ -1098,55 +1105,60 @@ img, svg, canvas { max-width: 100%; }
     </section>
 
     <!-- 19 Release plan -->
-    <section class="screen" data-screen="release-plan" data-title="Release Plan: R1 (PoC) & R2 (MVP)" data-group="Solution" data-frame="none" data-req="REQ-28">
+    <section class="screen" data-screen="release-plan" data-title="Release Plan: R1 (Pilot) & R2 (MVP)" data-group="Solution" data-frame="none" data-req="REQ-28">
       <div class="lp-hero"><div class="eyebrow">Proposal alignment · what goes live when</div><h1>Release plan</h1>
-        <p class="muted">Release 1 (PoC) is production-ready for one production area (Valve Line 1) by week 10. Release 2 (MVP) runs the whole pilot plant by week 22.</p></div>
+        <p class="muted">Release 1 (Pilot) is production-ready for one production area (Valve Line 1) by week 16. Release 2 (MVP) runs the whole pilot plant by week 32.</p></div>
       <div class="grid-2e" id="rpCols" data-note-label="Release summary" data-note="Same content as the 'At a glance' slide in the proposal deck. Use the Release selector in the shell bar to see the app as delivered in Release 1." data-req="REQ-28"></div>
       <div class="card" style="margin-top:1rem">
         <div class="card-head"><h2>Features by release</h2><span class="mini">F-IDs and build types match the proposal deck</span></div>
-        <table class="table" data-note-label="Feature release map" data-note="Feature IDs F01–F16 and build types from the proposal. Release 1 column = live in week 10; Release 2 column = what the MVP adds. Click a row to open the screen." data-req="REQ-28">
-          <thead><tr><th>ID</th><th>Feature</th><th>Build type</th><th>Accelerator / basis</th><th>Release 1 · PoC</th><th>Release 2 · MVP adds</th></tr></thead><tbody id="rpRows"></tbody></table>
+        <table class="table" data-note-label="Feature release map" data-note="Feature IDs F01–F16 and build types from the proposal. Release 1 column = live in week 16; Release 2 column = what the MVP adds. Click a row to open the screen." data-req="REQ-28">
+          <thead><tr><th>ID</th><th>Feature</th><th>Build type</th><th>Accelerator / basis</th><th>Release 1 · Pilot</th><th>Release 2 · MVP adds</th></tr></thead><tbody id="rpRows"></tbody></table>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <div class="card-head"><h2>SAP transactions posted by release</h2><span class="mini">Every posting: agent proposes → live re-check → named approver → released API → SAP document and audit</span></div>
+        <table class="table" data-note-label="SAP transactions by release" data-note="Same list as the 'SAP transactions posted by release' slide in the proposal. Release 1 posts two transactions; Release 2 adds three. MRP, rescheduling and master data are never posted." data-req="REQ-21,REQ-28">
+          <thead><tr><th>SAP transaction</th><th>Triggered from</th><th>S/4HANA released API</th><th>Approver</th><th>Release</th></tr></thead><tbody id="rpSap"></tbody></table>
       </div>
     </section>
 
     <!-- 18 Architecture -->
     <section class="screen" data-screen="architecture" data-title="Solution Architecture" data-group="Solution" data-frame="none" data-req="NFR-01,NFR-02,NFR-03,NFR-04">
       <div class="lp-hero"><div class="eyebrow">Reference · how this prototype is built for real</div><h1>Solution architecture</h1>
-        <p class="muted">SAP BTP experience and control, Cherrywork agents on Joule and SAP AI Core, governed data in SLB's Google BigQuery, S/4HANA as system of record.</p></div>
+        <p class="muted">SAP BTP experience and control, Cherrywork agents on SAP AI Core, governed data in SLB's Google BigQuery, S/4HANA as system of record.</p></div>
       <div class="card">
-        <div class="arch" data-note-label="Architecture layers" data-note="Matches the Incture approach deck (SAP-native AI option). Agents run in Joule Studio on SAP AI Core; data stays in BigQuery and S/4HANA and is reached only through MCP tools.">
+        <div class="arch" data-note-label="Architecture layers" data-note="Matches the Incture approach deck (SAP-native AI option). Agents run on SAP AI Core; data stays in BigQuery and S/4HANA and is reached only through MCP tools.">
           <div class="layer"><div class="lt" style="background:#0070f2">1 Experience<small>SAP BTP</small></div><div class="lb">
             <div class="abox"><b>SAP Build Work Zone</b>Launchpad, role-based tiles</div>
             <div class="abox"><b>Mission Control app</b>SAPUI5 / Fiori Elements + CAP</div>
-            <div class="abox hl"><b>SAP Joule</b>R1: Operational Summary chat · R2: every screen, tablet, Teams <span class="rel r1">R1</span><span class="rel r2">R2</span></div>
+            <div class="abox hl"><b>Operations Agent chat</b>R1: chat panel and page · R2: every screen, tablet, Teams <span class="rel r1">R1</span><span class="rel r2">R2</span></div>
             <div class="abox"><b>SAP Cloud Identity Services</b>SSO, role collections</div></div></div>
-          <div class="layer"><div class="lt" style="background:linear-gradient(135deg,#5d36ff,#a100c2)">2 Agentic intelligence<small>Joule Studio · SAP AI Core</small></div><div class="lb">
-            <div class="abox hl"><b>Cherrywork Operations Agent</b>Orchestrator in Joule</div>
-            <div class="abox hl"><b>Specialist Cherrywork agents</b>Exception, Shortage &amp; Recovery, Planning, OEE, Quality, Equipment, Meetings</div>
+          <div class="layer"><div class="lt" style="background:linear-gradient(135deg,#5d36ff,#a100c2)">2 Agentic intelligence<small>SAP AI Core</small></div><div class="lb">
+            <div class="abox hl"><b>Cherrywork Operations Agent</b>Orchestrator on SAP AI Core</div>
+            <div class="abox hl"><b>Specialist Cherrywork agents</b>Exception, Shortage &amp; Recovery, Equipment Troubleshooting, OEE (R1) · Planning, Quality, Meetings (R2)</div>
             <div class="abox hl"><b>SAP AI Core · generative AI hub</b>LLM access, orchestration, grounding, content filters</div>
             <div class="abox"><b>MCP tool layer</b>Typed, role-scoped tools (read / propose)</div></div></div>
           <div class="layer"><div class="lt" style="background:#b9784a">3 Integration &amp; control<small>SAP BTP</small></div><div class="lb">
             <div class="abox"><b>SAP Integration Suite</b>Live S/4HANA reads, write-back calls</div>
             <div class="abox"><b>SAP Event Mesh</b>S/4HANA business events (order released, goods movement)</div>
-            <div class="abox"><b>SAP Build Process Automation</b>R1: stock transfer · R2: + 4 SAP actions <span class="rel r1">R1</span><span class="rel r2">R2</span></div>
+            <div class="abox"><b>SAP Build Process Automation</b>R1: STO, maintenance notification · R2: + PO expedite, confirmation, quality notification <span class="rel r1">R1</span><span class="rel r2">R2</span></div>
             <div class="abox"><b>Destination + Cloud Connector</b>Secure on-premise / private connectivity</div></div></div>
           <div class="layer"><div class="lt" style="background:#3c9a73">4 Data &amp; analytics<small>Google Cloud (SLB estate)</small></div><div class="lb">
             <div class="abox"><b>BigQuery + Cortex Framework</b>Replicated SAP data (CDC)</div>
             <div class="abox"><b>Mission Control data products</b>R1: priority domains · R2: all domains <span class="rel r1">R1</span><span class="rel r2">R2</span></div>
-            <div class="abox"><b>Pub/Sub + Dataflow</b>Machine signals, MES events <span class="rel r2">R2</span></div>
+            <div class="abox"><b>Pub/Sub + Dataflow</b>Machine signals, MII events <span class="rel r1">R1</span></div>
             <div class="abox"><b>Dataplex</b>Lineage, data quality, policy tags</div></div></div>
           <div class="layer"><div class="lt" style="background:#556b82">5 Systems of record<small>Unchanged</small></div><div class="lb">
             <div class="abox"><b>SAP S/4HANA</b>PP, MM, SD, PM, QM</div>
-            <div class="abox"><b>MES / SAP MII</b>Operation and quality events <span class="rel r2">R2</span></div>
-            <div class="abox"><b>Machines / historian</b>States, counts, alarms <span class="rel r2">R2</span></div>
+            <div class="abox"><b>MES / SAP MII</b>Machine and quality events <span class="rel r1">R1 pilot area</span><span class="rel r2">R2</span></div>
+            <div class="abox"><b>Machines / historian</b>States, counts, alarms <span class="rel r1">R1</span></div>
             <div class="abox"><b>Mission Control CAP DB</b>Notes, tags, meetings, config (HANA Cloud)</div></div></div>
         </div>
       </div>
       <div class="grid-2e">
         <div class="card"><div class="card-head"><h2>A question, end to end</h2></div>
           <ol class="flowsteps">
-            <li><span>User asks Joule “Why is order 1000482317 waiting?” (SSO via Cloud Identity).</span></li>
-            <li><span>Operations Agent routes to the Exception Investigator (Joule Studio, model via generative AI hub).</span></li>
+            <li><span>User asks the Operations Agent “Why is order 1000482317 waiting?” (SSO via Cloud Identity).</span></li>
+            <li><span>Operations Agent routes to the Exception Investigator (SAP AI Core, model via generative AI hub).</span></li>
             <li><span>MCP tools read live status from S/4HANA (Integration Suite) and history from BigQuery data products.</span></li>
             <li><span>Answer returns with sources and timestamps, plus a recovery option.</span></li>
             <li><span>User selects the option → proposal in Build Process Automation → approver → S/4HANA API.</span></li>
@@ -1167,8 +1179,8 @@ img, svg, canvas { max-width: 100%; }
 </main>
 
 <!-- ============ JOULE PANEL ============ -->
-<aside class="joule" id="joule" hidden aria-label="Joule">
-  <div class="joule-head"><span class="j">J</span><div><strong>Joule · Operations Agent</strong><small>Cherrywork agents · SAP AI Core generative AI hub</small></div>
+<aside class="joule" id="joule" hidden aria-label="Operations Agent">
+  <div class="joule-head"><span class="j">AI</span><div><strong>Operations Agent</strong><small>Cherrywork agents · SAP AI Core generative AI hub</small></div>
     <button class="icon-btn" id="jouleClose" aria-label="Close">×</button></div>
   <div id="jouleChat" style="display:flex;flex-direction:column;flex:1;min-height:0"></div>
 </aside>
@@ -1240,10 +1252,11 @@ window.PROTO = {
     { id: "REQ-25", title: "Production Meetings / Meeting Tracker (from screenshots)" },
     { id: "REQ-26", title: "Area & Work Center summary (from screenshots)" },
     { id: "REQ-27", title: "Role-based experience for plant, planning, materials, maintenance, admin and global process owner" },
-    { id: "REQ-28", title: "Phased delivery: Release 1 (PoC) production-ready for one production area; Release 2 (MVP) for the whole pilot plant (proposal)" },
+    { id: "REQ-28", title: "Phased delivery: Release 1 (Pilot) production-ready for one production area; Release 2 (MVP) for the whole pilot plant (proposal)" },
+    { id: "REQ-29", title: "Maintenance and OEE in Release 1 (client follow-up): machine-signal maintenance alerts, troubleshooting help, OEE losses and governed maintenance-notification posting" },
     { id: "NFR-01", title: "Data latency: live SAP reads 2–5 s; twin and WIP 1–5 min (CDC); shortages 5–15 min", ui: false },
     { id: "NFR-02", title: "Integration to S/4HANA through SAP Integration Suite and released APIs; SAP stays system of record", ui: false },
-    { id: "NFR-03", title: "Cherrywork agents built in Joule Studio, running on SAP AI Core (generative AI hub), grounded only on governed data via MCP tools", ui: false },
+    { id: "NFR-03", title: "Cherrywork agents (Operations Agent and specialists) running on SAP AI Core (generative AI hub), grounded only on governed data via MCP tools", ui: false },
     { id: "NFR-04", title: "SSO through SAP Cloud Identity Services; SAP authorisations via principal propagation; full audit trail", ui: false },
   ],
 
@@ -1258,32 +1271,33 @@ window.PROTO = {
   ],
 
   assumptions: [
-    { type: "Assumption", text: "Release 1 (PoC) is production-ready for one production area (Valve Line 1, 8 work centers, 10–15 users) and goes live in week 10. Release 2 (MVP) covers the whole pilot plant (30–50 users) and goes live in week 22." },
-    { type: "Assumption", text: "In Release 1 the only SAP write-back is the stock transport order. Reschedule, PO expedite, maintenance notification and confirmation postings arrive in Release 2." },
-    { type: "Assumption", text: "Order notes & tags, production meetings, maintenance and quality signals, OEE analysis, Microsoft Teams and tablet access are Release 2. Global plant rollout follows Release 2." },
+    { type: "Assumption", text: "Release 1 (Pilot) is production-ready for one production area (Valve Line 1, 8 work centers, 10–15 users) and goes live in week 16. Release 2 (MVP) covers the whole pilot plant (30–50 users) and goes live in week 32." },
+    { type: "Assumption", text: "SAP transactions: Release 1 posts stock transport orders and maintenance notifications. Release 2 adds PO expedite, production order confirmation and quality notification. Nothing else is written to SAP." },
+    { type: "Assumption", text: "MRP is out of scope: Mission Control does not read MRP results or post MRP transactions. Scheduling arrives in Release 2 as a view of load, plan vs actual and adherence, with no rebalancing or rescheduling." },
+    { type: "Assumption", text: "Maintenance alerts, troubleshooting help and OEE losses are in Release 1 for the pilot area, based on SAP MII and machine signals. Quality alerts, order notes & tags, production meetings, Microsoft Teams and tablet access are Release 2. Global plant rollout follows Release 2." },
     { type: "Assumption", text: "Platform is a responsive web app in SAP Fiori Horizon style (SAPUI5 + CAP on SAP BTP, launched from SAP Build Work Zone). Dark theme by default to match the screenshots; light theme via toggle." },
-    { type: "Assumption", text: "AI runs as Cherrywork agents built in Joule Studio on SAP AI Core (generative AI hub). The Operations Agent orchestrates specialist agents; all tools exposed via MCP." },
+    { type: "Assumption", text: "AI runs as Cherrywork agents on SAP AI Core (generative AI hub). The Operations Agent orchestrates specialist agents; all tools exposed via MCP." },
     { type: "Assumption", text: "SAP Digital Manufacturing is out of scope. Shop-floor status comes from S/4HANA PP confirmations, existing MES / SAP MII events and machine signals." },
-    { type: "Assumption", text: "Analytical data (WIP history, shortage graph, KPIs) comes from Mission Control data products in SLB's Google BigQuery (Cortex Framework); live single-record reads come from S/4HANA via Integration Suite." },
+    { type: "Assumption", text: "Analytical data (WIP history, shortage graph, OEE, KPIs) comes from Mission Control data products in SLB's Google BigQuery (Cortex Framework); live single-record reads come from S/4HANA via Integration Suite." },
     { type: "Assumption", text: "Every write to SAP is a proposal: re-validated live in S/4HANA, approved in SAP Build Process Automation by the role in the approval matrix, then posted via released APIs." },
     { type: "Assumption", text: "Plant, materials, customers and figures are invented demo data shaped like the screenshots (valves / pressure-control products). Customer names are fictitious." },
     { type: "Assumption", text: "Requirement IDs (REQ-xx, NFR-xx) were created for this prototype because the source email has none." },
-    { type: "Question", text: "Which plant and value stream should the PoC use, and which shifts / calendars apply?" },
-    { type: "Question", text: "Confirm the approval matrix: who approves stock transfers, reschedules and maintenance notifications, and at what value thresholds?" },
-    { type: "Question", text: "Are MES / SAP MII operation events and machine states available for the pilot plant, or only S/4HANA confirmations?" },
-    { type: "Question", text: "Does SLB hold Joule and SAP AI Core entitlements, and which LLMs are approved for use via the generative AI hub?" },
+    { type: "Question", text: "Which plant and value stream should the pilot use, and which shifts / calendars apply?" },
+    { type: "Question", text: "Confirm the approval matrix: who approves stock transfers and maintenance notifications (R1), and PO expedites, confirmations and quality notifications (R2), and at what thresholds?" },
+    { type: "Question", text: "Which machine signals and SAP MII events are available for the pilot area to drive maintenance alerts and OEE?" },
+    { type: "Question", text: "Does SLB hold SAP AI Core entitlements, and which LLMs are approved for use via the generative AI hub?" },
   ],
 };
 
 (function () {
   const P = window.PROTO;
   const RELN = {
-    "REQ-01": "R1 · one area → R2 · whole plant", "REQ-02": "R1 · Valve Line 1 → R2 · whole plant", "REQ-03": "R1 · WIP, waiting, shortage, capacity → R2 · + maintenance, quality",
-    "REQ-04": "R1 · one area → R2 · whole plant", "REQ-05": "R1", "REQ-06": "R1", "REQ-07": "R1", "REQ-08": "R1 · exception, bottleneck → R2 · + OEE, quality root cause",
+    "REQ-01": "R1 · one area → R2 · whole plant", "REQ-02": "R1 · Valve Line 1 → R2 · whole plant", "REQ-03": "R1 · WIP, waiting, shortage, capacity, maintenance → R2 · + quality",
+    "REQ-04": "R1 · one area → R2 · whole plant", "REQ-05": "R1", "REQ-06": "R1", "REQ-07": "R1", "REQ-08": "R1 · exception, bottleneck, OEE → R2 · + quality root cause",
     "REQ-09": "R1", "REQ-10": "R1", "REQ-11": "R1", "REQ-12": "R1", "REQ-13": "R1", "REQ-14": "R1", "REQ-15": "R1", "REQ-16": "R1", "REQ-17": "R1",
-    "REQ-18": "R1 · ranked plan + stock transfer → R2 · + supplier expedite", "REQ-19": "R1 · one area → R2 · whole plant", "REQ-20": "R1 · one area → R2 · whole plant + reschedule to SAP",
-    "REQ-21": "R1 · stock transfer live → R2 · + reschedule, PO expedite, maintenance notification, confirmation", "REQ-22": "R1 · Operational Summary chat → R2 · chat in every view, tablet, Teams",
-    "REQ-23": "R1", "REQ-24": "R2", "REQ-25": "R2", "REQ-26": "R1 → R2", "REQ-27": "R1 → R2", "REQ-28": "Proposal" };
+    "REQ-18": "R1 · ranked plan + stock transfer → R2 · + supplier expedite", "REQ-19": "R2 · whole plant (view only, no rebalancing)", "REQ-20": "R2 · plan vs actual (view only)",
+    "REQ-21": "R1 · stock transfer + maintenance notification → R2 · + PO expedite, confirmation, quality notification", "REQ-22": "R1 · Operations Agent chat → R2 · chat in every view, tablet, Teams",
+    "REQ-23": "R1", "REQ-24": "R2", "REQ-25": "R2", "REQ-26": "R1 → R2", "REQ-27": "R1 → R2", "REQ-28": "Proposal", "REQ-29": "R1 · maintenance alerts, troubleshooting, OEE, maintenance notification" };
   P.requirements.forEach(r => { if (RELN[r.id]) r.note = "Release: " + RELN[r.id]; });
   const today = "2026-10-21";
   const plantList = [
@@ -1349,7 +1363,7 @@ window.PROTO = {
   ];
 
   const seed = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 9973; return h; };
-  const addDays = (iso, n) => { const d = new Date(iso + "T00:00:00"); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
+  const addDays = (iso, n) => { const d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
 
   const orders = raw.map(([id, mat, qty, rc, so, cust, need, cur, state, risk, blocker]) => {
     const m = materials[mat]; const sd = seed(id);
@@ -1399,7 +1413,7 @@ window.PROTO = {
     { sev: "w", wc: "HT-01", title: "Heat Treat · Batch delay", text: "42 units waiting for the next furnace batch (4.2 h).", ago: "18 min", ask: "What happens if Heat Treat batches are delayed?", link: "workcenter?id=HT-01", linkLabel: "Open work center", cat: "Waiting time" },
     { sev: "w", wc: "SUB-01", title: "Sub Assembly · Material shortage", text: "Hydraulic Actuator ACT-HYD-200 short for Valve X order 1000482330.", ago: "25 min", ask: "Why is production order 1000482330 waiting?", link: "shortage-detail?id=ACT-HYD-200", linkLabel: "Find alternatives", cat: "Material" },
     { sev: "w", wc: "PT-01", title: "Pressure Test · Quality", text: "Order 1000482308 failed shell test; rework queued. FPY 96.8% (target 97%).", ago: "41 min", ask: "What is the status of production order 1000482308?", link: "order-detail?id=1000482308", linkLabel: "Open order", cat: "Quality", rel: "R2" },
-    { sev: "i", wc: "TRN-02", title: "Turning · Maintenance", text: "Spindle vibration on CNC-T04 trending above alert limit (7.1 mm/s).", ago: "52 min", ask: "Troubleshoot CNC-T04 spindle vibration", link: "workcenter?id=TRN-02", linkLabel: "Open work center", cat: "Maintenance", rel: "R2" },
+    { sev: "w", wc: "TRN-02", title: "Turning · Maintenance", text: "Spindle vibration on CNC-T04 trending above alert limit (7.1 mm/s).", ago: "52 min", ask: "Troubleshoot CNC-T04 spindle vibration", link: "workcenter?id=TRN-02", linkLabel: "Open work center", cat: "Maintenance" },
   ];
 
   // Schedule: 6 shift slots, blocks per work center
@@ -1439,53 +1453,57 @@ window.PROTO = {
   ];
 
   const agents = [
-    { id: "ops", rel: "R1", name: "Operations Agent", role: "Orchestrator · Joule", desc: "Single entry point in Joule. Understands the question, picks specialist agents and tools, and assembles a grounded answer with sources.", from: "Incture Integrated Operations Platform (adapted)", tools: ["get_kpis", "list_signals", "route_to_agent"], eval: 92, calls: 412, on: true },
+    { id: "ops", rel: "R1", name: "Operations Agent", role: "Orchestrator · SAP AI Core", desc: "Single entry point for every question. Understands the question, picks specialist agents and tools, and assembles a grounded answer with sources.", from: "Incture Integrated Operations Platform (adapted)", tools: ["get_kpis", "list_signals", "route_to_agent"], eval: 92, calls: 412, on: true },
     { id: "exc", rel: "R1", name: "Production Line Exception Investigator", role: "Root cause", desc: "Explains why orders wait: queue history, component coverage, capacity and quality holds.", from: "Cherrywork manufacturing agents", tools: ["get_order_status", "get_operation_history", "get_component_coverage"], eval: 90, calls: 188, on: true },
     { id: "sho", rel: "R1", name: "Shortage & Recovery Agent", role: "Materials", desc: "Traverses the shortage-impact graph, checks other plants and suppliers, ranks recovery options and drafts proposals.", from: "Cherrywork Supplier Collaboration Portal + IOP Insight-to-Action", tools: ["get_shortage_graph", "get_interplant_stock", "propose_sto", "request_supplier_expedite"], eval: 89, calls: 121, on: true },
-    { id: "pln", rel: "R1", name: "Planning & Order Release Agent", role: "Scheduling", desc: "Flags unscheduled or late orders, simulates moves across shifts and work centers, drafts reschedules.", from: "Cherrywork Production Planning & Order Release agent", tools: ["simulate_schedule", "propose_reschedule"], eval: 87, calls: 64, on: true },
-    { id: "oee", rel: "R2", name: "OEE & Downtime Analysis Agent", role: "Performance", desc: "Finds availability, performance and quality losses by work center and shift from confirmations and machine signals.", from: "Cherrywork OEE & Downtime Analysis agent", tools: ["get_oee_losses", "get_machine_states"], eval: 88, calls: 47, on: true },
+    { id: "pln", rel: "R2", name: "Planning & Order Release Agent", role: "Scheduling (view only)", desc: "Flags unscheduled or late orders and explains load by work center and shift. No rebalancing or rescheduling.", from: "Cherrywork Production Planning & Order Release agent", tools: ["get_schedule_load", "list_unscheduled_orders"], eval: 87, calls: 64, on: true },
+    { id: "oee", rel: "R1", name: "OEE & Downtime Analysis Agent", role: "Performance", desc: "Finds availability, performance and quality losses by work center and shift from confirmations and machine signals.", from: "Cherrywork OEE & Downtime Analysis agent", tools: ["get_oee_losses", "get_machine_states"], eval: 88, calls: 47, on: true },
     { id: "qua", rel: "R2", name: "Quality Monitoring & Analysis Agent", role: "Quality", desc: "Tracks FPY, scrap and nonconformances; links test failures to orders, lots and operations.", from: "Cherrywork Quality Monitoring agent", tools: ["get_quality_results", "get_notifications"], eval: 86, calls: 29, on: true },
-    { id: "eqp", rel: "R2", name: "Equipment Troubleshooting Agent", role: "Maintenance", desc: "Reads machine signals and maintenance history, suggests fixes from SOPs, drafts maintenance notifications.", from: "Cherrywork Intelligent Maintenance & Operations · SAP Store", tools: ["get_asset_health", "search_sops", "propose_pm_notification"], eval: 90, calls: 33, on: true },
+    { id: "eqp", rel: "R1", name: "Equipment Troubleshooting Agent", role: "Maintenance", desc: "Reads machine signals and maintenance history, suggests fixes from SOPs, drafts maintenance notifications.", from: "Cherrywork Intelligent Maintenance & Operations · SAP Store", tools: ["get_asset_health", "search_sops", "propose_pm_notification"], eval: 90, calls: 33, on: true },
     { id: "mtg", rel: "R2", name: "Production Meeting Assistant", role: "Collaboration", desc: "Builds the tier-meeting agenda from live signals, captures actions with owners and follows up.", from: "Cherrywork Intelligent Work Management", tools: ["list_signals", "create_action", "notify_owner"], eval: 93, calls: 18, on: false },
   ];
 
   const tools = [
-    { name: "get_order_status", src: "S/4HANA PP · Production Order API (live)", mode: "Read", lat: "2–3 s" },
-    { name: "get_operation_history", src: "BigQuery data product: order & operation timeline", mode: "Read", lat: "< 1 s" },
-    { name: "get_component_coverage", src: "S/4HANA reservations + BigQuery stock snapshot", mode: "Read", lat: "2–4 s" },
-    { name: "get_shortage_graph", src: "BigQuery data product: shortage-impact graph", mode: "Read", lat: "< 1 s" },
-    { name: "get_interplant_stock", src: "S/4HANA MM stock (live, all plants)", mode: "Read", lat: "2–3 s" },
-    { name: "simulate_schedule", src: "CAP scheduling service on BTP", mode: "Read", lat: "1–2 s" },
-    { name: "get_asset_health", src: "Machine signals (Pub/Sub → BigQuery) + S/4HANA PM", mode: "Read", lat: "< 2 s" },
-    { name: "propose_sto / propose_reschedule / propose_pm_notification", src: "SAP Build Process Automation (approval) → Integration Suite → S/4HANA", mode: "Propose", lat: "Async" },
+    { name: "get_order_status", src: "S/4HANA PP · Production Order API (live)", mode: "Read", lat: "2–3 s", rel: "R1" },
+    { name: "get_operation_history", src: "BigQuery data product: order & operation timeline", mode: "Read", lat: "< 1 s", rel: "R1" },
+    { name: "get_component_coverage", src: "S/4HANA reservations + BigQuery stock snapshot", mode: "Read", lat: "2–4 s", rel: "R1" },
+    { name: "get_shortage_graph", src: "BigQuery data product: shortage-impact graph", mode: "Read", lat: "< 1 s", rel: "R1" },
+    { name: "get_interplant_stock", src: "S/4HANA MM stock (live, all plants)", mode: "Read", lat: "2–3 s", rel: "R1" },
+    { name: "get_asset_health / get_machine_states", src: "Machine signals and SAP MII (Pub/Sub → BigQuery) + S/4HANA PM", mode: "Read", lat: "< 2 s", rel: "R1" },
+    { name: "get_oee_losses", src: "BigQuery data product: OEE losses", mode: "Read", lat: "< 1 s", rel: "R1" },
+    { name: "propose_sto / propose_pm_notification", src: "SAP Build Process Automation (approval) → Integration Suite → S/4HANA", mode: "Propose", lat: "Async", rel: "R1" },
+    { name: "get_schedule_load", src: "CAP schedule service (view only)", mode: "Read", lat: "1–2 s", rel: "R2" },
+    { name: "propose_po_expedite / propose_confirmation / propose_quality_notification", src: "SAP Build Process Automation → Integration Suite → S/4HANA", mode: "Propose", lat: "Async", rel: "R2" },
   ];
+
 
   const features = [
     ["F01", "Digital Twin canvas (configurable areas and work centers)", "Hybrid", "IOP command-center pattern + custom SAPUI5 twin", "Valve Line 1", "Whole plant", "live-shopfloor"],
-    ["F02", "Signal and exception rules engine", "Accelerator-led", "IOP Rules Engine and Insight-to-Action", "WIP, waiting, shortage, capacity", "+ maintenance, quality", "live-shopfloor"],
+    ["F02", "Signal and exception rules engine", "Accelerator-led", "IOP Rules Engine and Insight-to-Action", "WIP, waiting, shortage, capacity, maintenance", "+ quality", "live-shopfloor"],
     ["F03", "Drill-down: area → work center → order → operation", "Custom", "SAP Fiori Elements on CAP", "Valve Line 1", "Whole plant", "workcenter?id=MIL-02"],
-    ["F04", "Operations Agent in Joule", "Accelerator-led", "Cherrywork agents on Joule Studio / SAP AI Core", "Operational Summary chat", "Chat in every view, tablet, Teams", "agent"],
+    ["F04", "Operations Agent on SAP AI Core", "Accelerator-led", "Cherrywork agents on SAP AI Core (generative AI hub)", "Operations Agent chat", "Chat in every view, tablet, Teams", "agent"],
     ["F05", "Operational Summary skills (status, time, open ops, position)", "Hybrid", "Cherrywork Exception Investigator + custom MCP tools", "Full", "—", "order-detail?id=1000482317"],
-    ["F06", "Exception, bottleneck and root-cause agent", "Accelerator-led", "Cherrywork Exception Investigator; OEE & Downtime agent", "Exception, bottleneck", "+ OEE, quality root cause", "workcenter?id=MIL-02"],
+    ["F06", "Exception, bottleneck and root-cause agent", "Accelerator-led", "Cherrywork Exception Investigator; OEE & Downtime agent", "Exception, bottleneck, OEE", "+ quality root cause", "workcenter?id=MIL-02"],
     ["F07", "Shortage Analyzer and shortage-impact graph", "Hybrid", "Custom BigQuery data product + Shortage & Recovery agent", "Full", "—", "shortages"],
     ["F08", "Inter-plant availability (live)", "Custom", "S/4HANA MM stock tool via Integration Suite", "Full", "—", "shortage-detail?id=SK-2041"],
     ["F09", "Recovery plan and supplier expedite", "Accelerator-led", "IOP Insight-to-Action + Cherrywork Supplier Collaboration Portal", "Ranked recovery plan", "+ supplier expedite", "shortage-detail?id=SK-2041"],
-    ["F10", "Shop-floor Scheduler (capacity, plan vs actual, what-if)", "Hybrid", "Planning & Order Release agent + custom SAPUI5 Gantt", "Valve Line 1, what-if", "Whole plant + reschedule to SAP", "schedule"],
-    ["F11", "Governed SAP write-back workflow", "Accelerator-led", "Integration Suite starter packs + BPA templates", "1 action live: stock transfer", "+ reschedule, PO expedite, PM notification, confirmation", "approvals"],
-    ["F12", "Mission Control data products and MCP tools", "Custom", "SLB BigQuery + Google Cortex Framework", "Priority domains", "All domains + MES / machine events", "architecture"],
-    ["F13", "Maintenance and quality signals", "Accelerator-led", "Cherrywork IMO; Equipment Troubleshooting Agent", "—", "Full", "workcenter?id=TRN-02"],
+    ["F10", "Shop-floor Scheduler (capacity, plan vs actual, adherence)", "Hybrid", "Custom SAPUI5 schedule board; Planning & Order Release agent flags unscheduled orders", "—", "Whole plant, view only (no rebalancing)", "schedule"],
+    ["F11", "Governed SAP write-back workflow", "Accelerator-led", "Integration Suite starter packs + BPA templates", "2 live: STO, maintenance notification", "+ PO expedite, confirmation, quality notification", "approvals"],
+    ["F12", "Mission Control data products and MCP tools", "Custom", "SLB BigQuery + Google Cortex Framework", "Priority domains incl. machine signals", "All domains", "architecture"],
+    ["F13", "Maintenance, OEE and quality signals", "Accelerator-led", "Cherrywork IMO; Equipment Troubleshooting Agent; OEE & Downtime agent", "Maintenance, OEE", "+ quality", "workcenter?id=TRN-02"],
     ["F14", "Order notes, tags and production meetings", "Accelerator-led", "Cherrywork Intelligent Work Management", "—", "Full", "notes"],
     ["F15", "Security, audit and AI evaluation", "Hybrid", "Incture AI governance playbook + Cloud Identity / BTP roles", "Full", "Extended to all roles", "agent-hub"],
-    ["F16", "Discovery and value case", "Accelerator-led", "Incture DT.AI Discovery workshop", "Weeks 1–2", "Increment planning", "release-plan"],
+    ["F16", "Discovery and value case", "Accelerator-led", "Incture DT.AI Discovery workshop", "Weeks 1–3", "Increment planning", "release-plan"],
   ].map(([id, name, build, acc, r1, r2, go]) => ({ id, name, build, acc, r1, r2, go }));
 
   P.db = { today, features, plant: "1010", plants: plantList, materials, workCenters, areas, routing, orders, shortages, signals, slots, blocks, proposals, notes, actions, agents, tools,
     config: { queueAlert: 6, wipLimit: 80, fpyTarget: 97, horizon: 30, batchWait: 3, version: "1.4" },
     approvalMatrix: [
       { type: "Stock transport order", role: "mat", alt: "pm", threshold: "Any value; > $25k needs Plant Manager" },
-      { type: "Reschedule production order", role: "plan", alt: "pm", threshold: "Need-date impact > 2 days needs Plant Manager" },
       { type: "Maintenance notification", role: "mnt", alt: "sup", threshold: "Priority 1 needs Maintenance Manager" },
       { type: "Supplier expedite request", role: "mat", alt: "pm", threshold: "Expedite fee > $5k needs Plant Manager" },
+      { type: "Production order confirmation", role: "sup", alt: "pm", threshold: "Yield deviation > 5% needs Plant Manager" },
+      { type: "Quality notification", role: "pm", alt: "sup", threshold: "All quality notifications" },
     ],
     users: { pm: "K. Williams", sup: "D. Brooks", plan: "R. Chen", mat: "M. Alvarez", mnt: "J. Okafor", admin: "T. Nguyen", gpo: "L. Fischer" },
     seq: 142,
@@ -1779,18 +1797,18 @@ window.PROTO = {
   const short = (id) => db.shortages.find(s => s.id === id);
   const icon = (id) => `<svg viewBox="0 0 24 24"><use href="#i-${id}"/></svg>`;
 
-  /* ---------- releases (proposal: R1 = PoC, R2 = MVP) ---------- */
+  /* ---------- releases (proposal: R1 = Pilot, R2 = MVP) ---------- */
   const REL = { mode: "all" };
   const isR1 = () => REL.mode === "r1";
   const relChip = (r, short) => ({
-    R1: `<span class="rel r1">${short ? "R1" : "R1 · PoC"}</span>`,
+    R1: `<span class="rel r1">${short ? "R1" : "R1 · Pilot"}</span>`,
     R2: `<span class="rel r2">${short ? "R2" : "R2 · MVP"}</span>`,
     RO: `<span class="rel ro">${short ? "Rollout" : "Rollout after R2"}</span>`,
-    "R1>R2": `<span class="rel r1">R1 · PoC</span><span class="rel r2">R2 extends</span>` }[r] || "");
-  const WB_REL = (type) => type === "Stock transport order" ? "R1" : "R2";
+    "R1>R2": `<span class="rel r1">R1 · Pilot</span><span class="rel r2">R2 extends</span>` }[r] || "");
+  const WB_REL = (type) => ["Stock transport order", "Maintenance notification"].includes(type) ? "R1" : "R2";
   function r2Blocked(what) {
     if (!isR1()) return false;
-    App.toast(`${what} arrives in Release 2 · MVP (live week 22). Switch the Release view to "R1 + R2" to demo it.`, "danger");
+    App.toast(`${what} arrives in Release 2 · MVP (live week 32). Switch the Release view to "R1 + R2" to demo it.`, "danger");
     return true;
   }
   function decorateStatic() {
@@ -1799,7 +1817,7 @@ window.PROTO = {
   $("#relSel").addEventListener("change", (e) => {
     REL.mode = e.target.value; document.body.classList.toggle("rel1", isR1());
     syncFrame(); rerender();
-    App.toast(isR1() ? "Release 1 · PoC view: what goes live in week 10 for Valve Line 1" : "R1 + R2 · MVP view: the whole pilot plant at week 22");
+    App.toast(isR1() ? "Release 1 · Pilot view: what goes live in week 16 for Valve Line 1" : "R1 + R2 · MVP view: the whole pilot plant at week 32");
   });
 
   /* ---------- global filters ---------- */
@@ -1830,14 +1848,14 @@ window.PROTO = {
     $("#tabs").hidden = !inTabs;
     const h1 = $(".mc-title h1"), p = $(".mc-title p");
     if (inTabs) { h1.textContent = "Manufacturing Mission Control"; p.textContent = "Existing order-management capabilities, extended with a digital shopfloor twin and agentic operations intelligence."; }
-    else { h1.textContent = s.dataset.title.replace(/ \(.*\)$/, ""); p.textContent = ({ approvals: "Governed write-back: every change to SAP is re-validated, approved and traced.", notes: "Context the team adds to production orders; agents read it for root cause.", agent: "Ask in plain language. Cherrywork agents answer from governed SAP and BigQuery data.", "agent-hub": "Cherrywork agents built in Joule Studio, running on SAP AI Core.", global: "All plants on the Mission Control template.", config: "Configure the twin, thresholds and approval matrix per plant." })[App.current] || ""; }
+    else { h1.textContent = s.dataset.title.replace(/ \(.*\)$/, ""); p.textContent = ({ approvals: "Governed write-back: every change to SAP is re-validated, approved and traced.", notes: "Context the team adds to production orders; agents read it for root cause.", agent: "Ask in plain language. Cherrywork agents answer from governed SAP and BigQuery data.",  "agent-hub": "Cherrywork agents running on SAP AI Core (generative AI hub).", global: "All plants on the Mission Control template.", config: "Configure the twin, thresholds and approval matrix per plant." })[App.current] || ""; }
     // release chip next to the page title + lock screens that arrive in a later release
     let hc = $("#hRel"); if (!hc) { $(".mc-title h1").insertAdjacentHTML("beforeend", ` <span id="hRel"></span>`); hc = $("#hRel"); }
     hc.innerHTML = relChip(s.dataset.rel || "");
     App.screens().forEach(sc => { const b = $(":scope > .rel-banner", sc); if (b) b.remove(); sc.classList.remove("rel-locked"); });
     if (isR1() && ["R2", "RO"].includes(s.dataset.rel)) {
       s.classList.add("rel-locked");
-      s.insertAdjacentHTML("afterbegin", `<div class="rel-banner">${relChip(s.dataset.rel)} <b>${s.dataset.rel === "RO" ? "Rolled out to further plants after Release 2." : "This capability goes live in Release 2 · MVP (week 22)."}</b> <span>Shown greyed in the Release 1 view. Switch the Release selector to “R1 + R2 · MVP” to use it.</span></div>`);
+      s.insertAdjacentHTML("afterbegin", `<div class="rel-banner">${relChip(s.dataset.rel)} <b>${s.dataset.rel === "RO" ? "Rolled out to further plants after Release 2." : "This capability goes live in Release 2 · MVP (week 32)."}</b> <span>Shown greyed in the Release 1 view. Switch the Release selector to “R1 + R2 · MVP” to use it.</span></div>`);
     }
     $("#navAppr").textContent = db.proposals.filter(p => p.status === "Pending approval").length;
     $("#bellCount").textContent = db.proposals.filter(p => p.status === "Pending approval" && canApprove(p)).length || "";
@@ -1890,9 +1908,9 @@ window.PROTO = {
 
   /* ===================== 01 Launchpad ===================== */
   const TILES = [
-    { t: "Release plan", s: "R1 PoC wk 10 · R2 MVP wk 22", v: "2", u: "releases", go: "release-plan", i: "cal" },
+    { t: "Release plan", s: "R1 Pilot wk 16 · R2 MVP wk 32", v: "2", u: "releases", go: "release-plan", i: "cal" },
     { t: "Live Shopfloor", s: "Digital twin · constraints", v: "3", u: "constraints", go: "live-shopfloor", i: "grid" },
-    { t: "Ask Joule", s: "Operations Agent", v: "", u: "“What are my biggest risks today?”", ask: "What are my biggest risks today?", j: 1, i: "spark" },
+    { t: "Ask the Operations Agent", s: "Cherrywork agents · SAP AI Core", v: "", u: "“What are my biggest risks today?”", ask: "What are my biggest risks today?", j: 1, i: "spark" },
     { t: "Shortages Analyzer", s: "Next 30 days", v: "8", u: "materials short", go: "shortages", i: "alert", roles: "pm,sup,plan,mat,gpo" },
     { t: "Actions & Approvals", s: "Write-back to SAP", v: () => db.proposals.filter(p => p.status === "Pending approval").length, u: "pending", go: "approvals", i: "inbox" },
     { t: "Order Summary", s: "Active production orders", v: () => filterOrders().length, u: "orders", go: "order-summary", i: "list" },
@@ -1900,14 +1918,14 @@ window.PROTO = {
     { t: "Production Meetings", s: "Tier-2 · 07:30", v: () => db.actions.filter(a => a.status === "Open").length, u: "open actions", go: "meetings", i: "users" },
     { t: "Maintenance Signals", s: "Equipment health", v: "1", u: "alert (CNC-T04)", go: "workcenter?id=TRN-02", i: "wrench", roles: "mnt,sup,pm" },
     { t: "Global Plants", s: "4 plants on template", v: "88.9%", u: "avg on-time", go: "global", i: "globe", roles: "pm,gpo,admin" },
-    { t: "Cherrywork Agent Hub", s: "Joule · SAP AI Core", v: "7", u: "agents active", go: "agent-hub", i: "bot", roles: "admin,gpo,pm" },
+    { t: "Cherrywork Agent Hub", s: "SAP AI Core", v: () => db.agents.filter(a => a.on).length, u: "agents active", go: "agent-hub", i: "bot", roles: "admin,gpo,pm" },
     { t: "Plant Configuration", s: "Twin, thresholds, approvals", v: "v" + db.config.version, u: "published", go: "config", i: "cog", roles: "admin,gpo" },
-    { t: "Solution Architecture", s: "How it is built", v: "", u: "BTP · Joule · AI Core · BigQuery", go: "architecture", i: "arch" },
+    { t: "Solution Architecture", s: "How it is built", v: "", u: "BTP · SAP AI Core · BigQuery", go: "architecture", i: "arch" },
   ];
   App.onShow.home = () => {
     const first = (db.users[App.role] || "Kate").split(" ")[1] || "";
     $("#lpHello").textContent = `Good morning${first ? ", " + ({ Williams: "Kate", Brooks: "Dan", Chen: "Ruth", Alvarez: "Maria", Okafor: "James", Nguyen: "Tam", Fischer: "Lena" }[first] || first) : ""}`;
-    const TREL = { "live-shopfloor": "R1", shortages: "R1", approvals: "R1", "order-summary": "R1", schedule: "R1", meetings: "R2", "workcenter?id=TRN-02": "R2", global: "RO", "agent-hub": "R1", config: "R1" };
+    const TREL = { "live-shopfloor": "R1", shortages: "R1", approvals: "R1", "order-summary": "R1", schedule: "R2", meetings: "R2", "workcenter?id=TRN-02": "R1", global: "RO", "agent-hub": "R1", config: "R1" };
     $("#tiles").innerHTML = TILES.filter(t => !t.roles || t.roles.split(",").includes(App.role)).map(t => {
       const v = typeof t.v === "function" ? t.v() : t.v;
       const r = t.ask ? "R1" : TREL[t.go] || "";
@@ -1917,10 +1935,10 @@ window.PROTO = {
     }).join("");
     const ins = [
       { t: "Two strategic orders at risk this week", x: "Seal Kit SK-2041 blocks 1000482317 and 1000482319 (Gulf Coast Energy, Permian Ridge). Lafayette has 22 in stock.", ask: "Generate a recovery plan for SK-2041", c: "d" },
-      { t: "Milling is today's bottleneck", x: "Load 118%, 9.6 h queue. Moving 1000482338 to Shift 3 brings Shift 2 under 100% without need-date impact.", ask: "Rebalance Milling for the next 48 hours", c: "w" },
+      { t: "Milling is today's bottleneck", x: "Load 118%, 9.6 h queue; 9 orders may miss their need date. Tool-change overrun on MIL-02B cost 1.4 h this shift.", ask: "Why is Milling constrained?", c: "w" },
       { t: "Quality watch on Pressure Test", x: "FPY 96.8% vs 97% target after a shell-test failure on 1000482308.", ask: "What is the status of production order 1000482308?", c: "w" },
     ];
-    $("#lpInsights").innerHTML = ins.map(i => `<div class="signal ${i.c}"><div class="t">${i.t}</div><div class="x">${i.x}</div><button class="link" data-ask="${esc(i.ask)}">Ask Joule →</button></div>`).join("");
+    $("#lpInsights").innerHTML = ins.map(i => `<div class="signal ${i.c}"><div class="t">${i.t}</div><div class="x">${i.x}</div><button class="link" data-ask="${esc(i.ask)}">Ask the agent →</button></div>`).join("");
   };
 
   /* ===================== 02 Live shopfloor ===================== */
@@ -1994,8 +2012,8 @@ window.PROTO = {
 
   /* ===================== 04 Work center ===================== */
   const WC_ANALYSIS = {
-    "MIL-02": `<p><b>Root cause:</b> 3 of 3 resources running, but availability lost 1.4 h on MIL-02B (tool change overrun) and Valve X bodies need 1.6× standard time. Inflow from Turning is 42/shift vs Milling capacity 31.</p><p><b>Recommendation:</b> move 1000482338 (Class C) to Shift 3 and add an overtime cell on Shift 3; this protects Atlas Offshore order 1000482314.</p>`,
-    "ASM-01": `<p><b>Root cause:</b> 2 orders blocked by Seal Kit SK-2041; queue grows by ~3 units/h as upstream keeps feeding.</p><p><b>Recommendation:</b> transfer 12 × SK-2041 from Lafayette (arrives 22 Oct) and pull 1000482311 forward to use freed capacity.</p>`,
+    "MIL-02": `<p><b>Root cause:</b> 3 of 3 resources running, but availability lost 1.4 h on MIL-02B (tool change overrun) and Valve X bodies need 1.6× standard time. Inflow from Turning is 42/shift vs Milling capacity 31.</p><p><b>Recommendation:</b> fix the tool-change overrun on MIL-02B (standard 20 min, actual 46 min) and add an overtime cell on Shift 3; this protects Atlas Offshore order 1000482314.</p>`,
+    "ASM-01": `<p><b>Root cause:</b> 2 orders blocked by Seal Kit SK-2041; queue grows by ~3 units/h as upstream keeps feeding.</p><p><b>Recommendation:</b> transfer 12 × SK-2041 from Lafayette (arrives 22 Oct).</p>`,
     "HT-01": `<p><b>Root cause:</b> furnace batches are released only when full; current fill 70%. Average batch wait 4.2 h vs 3 h alert.</p><p><b>Recommendation:</b> release the next batch at 70% fill for Class A loads; impact on energy cost +4%.</p>`,
     "TRN-02": `<p><b>Signal:</b> CNC-T04 spindle vibration 7.1 mm/s (alert 6.0), rising for 3 shifts. Similar pattern preceded a bearing failure in March.</p><p><b>Recommendation:</b> raise a maintenance notification and inspect during Shift 3 changeover (45 min).</p>`,
   };
@@ -2005,12 +2023,12 @@ window.PROTO = {
     $("#wcHead").innerHTML = `<div class="top"><div><div class="mini">${area.name} · Work center</div><h1>${w.name} <span class="mini">${w.id}</span></h1>
       <div style="margin-top:.35rem"><span class="chip ${w.state}">${{ d: "Constraint", w: "At risk", s: "Running" }[w.state]}</span></div></div>
       <div class="obj-actions"><button class="ask-btn sm" data-ask="${w.state === "d" ? `Why is ${w.name} constrained?` : w.id === "TRN-02" ? "Troubleshoot CNC-T04 spindle vibration" : `What is the status of ${w.name}?`}">${icon("spark")}Ask agent</button>
-      ${w.id === "TRN-02" ? `<button class="btn" id="wcPm" data-roles="mnt,sup">Create maintenance notification ${relChip("R2", true)}</button>` : ""}
+      ${w.id === "TRN-02" ? `<button class="btn" id="wcPm" data-roles="mnt,sup">Create maintenance notification ${relChip("R1", true)}</button>` : ""}
       ${w.state === "d" ? `<a class="btn" href="#/schedule" data-roles="plan,pm,sup">Open schedule</a>` : ""}</div></div>
       <div class="facts"><div><span>Queue</span><strong>${w.queueH.toFixed(1)} h</strong></div><div><span>WIP</span><strong>${w.wip} units</strong></div><div><span>Load (shift)</span><strong class="${w.load > 100 ? "down" : ""}">${w.load}%</strong></div>
       <div><span>Output vs plan</span><strong>${w.out} / ${w.plan}</strong></div><div><span>OEE</span><strong>${w.oee ? w.oee + "%" : "n/a (manual)"}</strong></div><div><span>Resources</span><strong>${w.machines}</strong></div></div>`;
     $$("[data-roles]", $("#wcHead")).forEach(el => el.classList.toggle("role-hidden", !el.dataset.roles.split(",").includes(App.role)));
-    const pm = $("#wcPm"); if (pm) pm.addEventListener("click", () => { if (!r2Blocked("Maintenance notifications")) proposePM(); });
+    const pm = $("#wcPm"); if (pm) pm.addEventListener("click", () => proposePM());
     const ops = filterOrders().filter(o => o.status !== "Completed" && o.ops[o.curIdx].wc === w.id).sort((a, b) => a.need.localeCompare(b.need));
     $("#wcOps").innerHTML = ops.map(o => `<tr data-go="order-detail?id=${o.id}"><td><b>${o.id}</b></td><td>${o.ops[o.curIdx].op}</td><td>${esc(o.desc)}</td><td class="num-cell">${o.qty}</td><td>${fmtD(o.need)}</td><td>${st(o.state)}</td><td>${riskChip(o.risk)}</td></tr>`).join("");
     $("#wcEmpty").hidden = ops.length > 0;
@@ -2062,13 +2080,12 @@ window.PROTO = {
     $("#odHead").innerHTML = `<div class="top"><div><div class="mini">Production order · ${o.pc}</div><h1>${o.id} · ${esc(o.desc)}</h1>
       <div style="margin-top:.35rem;display:flex;gap:.4rem;flex-wrap:wrap">${st(o.status)} ${riskChip(o.risk + " risk")} ${o.blocker ? `<span class="chip d">${esc(o.blocker)}</span>` : ""}</div></div>
       <div class="obj-actions"><button class="ask-btn sm" data-ask="${o.state === "Completed" ? "What is the status of production order " + o.id : "Why is production order " + o.id + " waiting?"}">${icon("spark")}Ask agent</button>
-      <button class="btn" data-roles="plan,pm" id="odResched">Simulate reschedule</button><button class="btn ghost" id="odS4">Open in S/4HANA</button></div></div>
+      <button class="btn ghost" id="odS4">Open in S/4HANA</button></div></div>
       <div class="facts"><div><span>Material</span><strong>${o.material}</strong></div><div><span>Quantity</span><strong>${o.qty} EA</strong></div><div><span>Need date</span><strong class="${daysTo(o.need) <= 2 && o.status !== "Completed" ? "warn" : ""}">${fmtD(o.need)}</strong></div>
       <div><span>Customer / SO</span><strong>${esc(o.customer)} · ${o.so}</strong></div><div><span>Revenue class</span><strong>${o.rc}</strong></div><div><span>Order value</span><strong>${money(o.value)}</strong></div>
       <div><span>Live status</span><strong>S/4HANA · ${NOW}</strong></div></div>`;
     $$("[data-roles]", $("#odHead")).forEach(el => el.classList.toggle("role-hidden", !el.dataset.roles.split(",").includes(App.role)));
     $("#odS4").addEventListener("click", () => App.toast("In build: opens the standard S/4HANA 'Manage Production Orders' app for " + o.id));
-    const rs = $("#odResched"); if (rs) rs.addEventListener("click", () => openMove(db.blocks.find(b => b.order === o.id) , o));
     $("#odRoute").innerHTML = o.ops.map((op, i) => { const cls = op.status === "Confirmed" ? "done" : i === o.curIdx ? "cur" + (blocked ? " blocked" : "") : "";
       return `<div class="rstep ${cls}"><div class="node">${op.status === "Confirmed" ? "✓" : op.op.slice(2)}</div><div class="op">${op.op} ${op.name}</div><div class="wcn">${op.wc}${i === o.curIdx && o.status !== "Completed" ? " · " + o.state : ""}</div></div>`; }).join("");
     $("#odOps").innerHTML = o.ops.map((op, i) => `<tr><td><b>${op.op}</b> ${op.name}</td><td>${op.wc}</td><td class="num-cell">${op.planned.toFixed(1)}</td><td class="num-cell">${op.actual ? op.actual.toFixed(1) : "—"}</td><td class="num-cell">${op.yieldQ ? op.yieldQ + "/" + o.qty : "—"}</td><td>${st(op.status)}${op.queue && i === o.curIdx ? `<div class="mini">waiting ${op.queue} h</div>` : ""}</td></tr>`).join("");
@@ -2108,50 +2125,21 @@ window.PROTO = {
     const ids = new Set(filterOrders().map(o => o.id));
     const over = []; db.workCenters.forEach(w => db.slots.forEach(s => { if (loadOf(w.id, s.id) > capOf(w.id)) over.push(w.id + s.id); }));
     $("#schKpis").innerHTML = [kpiHTML("Schedule adherence", "92%", "▼ 1.8 pts vs last week", "down"), kpiHTML("Over-capacity cells", over.length, "next 48 h", over.length ? "down" : "up"),
-      kpiHTML("Operations scheduled", db.blocks.length, "next 48 h"), kpiHTML("Moves pending approval", db.proposals.filter(p => p.type === "Reschedule production order" && p.status === "Pending approval").length, "write-back to SAP", "warn")].join("");
+      kpiHTML("Operations scheduled", db.blocks.length, "next 48 h"), kpiHTML("Unscheduled released orders", "2", "flagged by Planning & Order Release agent", "warn")].join("");
     let h = `<div class="gh">Work center<small>capacity / shift</small></div>` + db.slots.map(s => `<div class="gh">${s.day}<small>${s.label} · ${s.time}</small></div>`).join("");
     db.workCenters.forEach(w => {
       h += `<div class="rl">${w.name}<small>${w.id} · ${capOf(w.id)} h</small></div>`;
       db.slots.forEach(s => { const L = loadOf(w.id, s.id), pct = Math.round(L / capOf(w.id) * 100);
         h += `<div class="cell ${pct > 100 ? "over" : ""}">${db.blocks.filter(b => b.wc === w.id && b.slot === s.id && ids.has(b.order)).map(b => { const o = order(b.order);
-          return `<div class="blk ${o.rc.startsWith("A") ? "A" : ""} ${b.moved ? "moved" : ""}" data-blk="${b.id}" title="${b.order} op ${b.op} · ${b.hrs} h · ${esc(o.customer)}">${b.order.slice(-5)} · ${b.op} · ${b.hrs}h</div>`; }).join("")}
+          return `<div class="blk ${o.rc.startsWith("A") ? "A" : ""}" data-blk="${b.id}" title="${b.order} op ${b.op} · ${b.hrs} h · ${esc(o.customer)}">${b.order.slice(-5)} · ${b.op} · ${b.hrs}h</div>`; }).join("")}
           <div class="load">${L ? pct + "%" : ""}</div></div>`; });
     });
     $("#gantt").innerHTML = h;
     $("#adhRows").innerHTML = db.workCenters.map((w, i) => { const pl = db.blocks.filter(b => b.wc === w.id && b.slot === "T1"); const ex = Math.max(0, pl.length - (w.state === "d" ? 1 : 0)); const ph = pl.reduce((a, b) => a + b.hrs, 0); const ch = +(ph * (w.out / w.plan)).toFixed(1); const ad = pl.length ? Math.round(ex / pl.length * 100) : 100;
       return `<tr><td><b>${w.name}</b> <span class="mini">${w.id}</span></td><td class="num-cell">${pl.length}</td><td class="num-cell">${ex}</td><td class="num-cell">${ph}</td><td class="num-cell">${ch}</td><td><div style="display:flex;gap:.5rem;align-items:center"><div class="progress ${ad < 80 ? "d" : ad < 95 ? "w" : "s"}" style="flex:1"><i style="width:${ad}%"></i></div><span class="mini">${ad}%</span></div></td></tr>`; }).join("");
   };
-  $("#gantt").addEventListener("click", (e) => { const b = e.target.closest("[data-blk]"); if (b) openMove(db.blocks.find(x => x.id === b.dataset.blk)); });
-  function openMove(b, o) {
-    if (!b) { App.toast("No open schedule slot for this order in the next 48 h", "danger"); return; }
-    o = o || order(b.order);
-    const opts = db.slots.filter(s => s.id !== b.slot).map(s => `<option value="${s.id}">${s.day} · ${s.label}</option>`).join("");
-    const cur = db.slots.find(s => s.id === b.slot);
-    App.modal({ title: `Simulate move · ${b.order} op ${b.op}`, body: `
-      <p class="mini">${esc(o.desc)} · ${o.qty} EA · ${esc(o.customer)} · need ${fmtD(o.need)} · ${o.rc}</p>
-      <form class="form" id="mvForm" novalidate>
-        <div class="field"><label>Work center</label><input value="${wcById(b.wc).name} (${b.wc})" disabled></div>
-        <div class="field"><label>Current slot</label><input value="${cur.day} · ${cur.label} (${cur.time})" disabled></div>
-        <div class="field"><label for="mvTo">Move to <span class="req">*</span></label><select id="mvTo" name="to" required><option value="">Select a shift…</option>${opts}</select><div class="error"></div></div>
-      </form><div id="mvSim" class="mini"></div><p class="mini" style="margin-top:.5rem">${relChip("R1")} what-if simulation · ${relChip("R2")} reschedule write-back to S/4HANA</p>`,
-      actions: [{ label: "Cancel" }, { label: isR1() ? "Propose change (Release 2)" : "Propose change", kind: "primary", onClick: (c, body) => {
-        if (!App.validate($("#mvForm", body))) return false;
-        if (r2Blocked("Writing schedule changes back to SAP")) return false;
-        if (!["plan", "pm", "sup"].includes(App.role)) { App.toast("Only planners, supervisors or the plant manager can propose schedule changes", "danger"); return false; }
-        const to = $("#mvTo", body).value, ts = db.slots.find(s => s.id === to);
-        b.slot = to; b.moved = true;
-        addProposal({ type: "Reschedule production order", object: `${b.order} op ${b.op} → ${ts.day} ${ts.label}`, ref: b.order, reason: `Simulated: ${wcById(b.wc).name} load rebalanced; need date ${fmtD(o.need)} ${["M2", "M3"].includes(to) && daysTo(o.need) <= 2 ? "at risk" : "held"}.` }, false);
-        if (App.current === "schedule") App.onShow.schedule();
-      } }] });
-    $("#mvTo").addEventListener("change", (e) => {
-      const to = e.target.value; if (!to) { $("#mvSim").innerHTML = ""; return; }
-      const cap = capOf(b.wc), a0 = loadOf(b.wc, b.slot), t0 = loadOf(b.wc, to);
-      const late = ["M2", "M3"].includes(to) && daysTo(o.need) <= 2;
-      $("#mvSim").innerHTML = `<div class="signal ${late ? "d" : "s"}"><div class="t">Simulation · Planning &amp; Order Release Agent</div>
-        <div class="x">Current slot load ${Math.round(a0 / cap * 100)}% → <b>${Math.round((a0 - b.hrs) / cap * 100)}%</b>; target slot ${Math.round(t0 / cap * 100)}% → <b>${Math.round((t0 + b.hrs) / cap * 100)}%</b>.<br>
-        ${late ? `⚠ Need date ${fmtD(o.need)} would slip by ~1 day for ${esc(o.customer)}.` : `Need date ${fmtD(o.need)} still met; downstream ops shift by ${to.startsWith("M") ? "1 shift" : "0–1 shift"}.`}</div></div>`;
-    });
-  }
+  $("#gantt").addEventListener("click", (e) => { const b = e.target.closest("[data-blk]"); if (!b) return; const x = db.blocks.find(k => k.id === b.dataset.blk); const o = order(x.order);
+    App.toast(`${x.order} op ${x.op} · ${x.hrs} h · ${o.customer} · need ${fmtD(o.need)}. View only: no rebalancing or rescheduling from Mission Control.`); });
 
   /* ===================== 09 Shortages ===================== */
   function filterShortages() {
@@ -2189,10 +2177,8 @@ window.PROTO = {
   function recoveryOptions(s) {
     const opts = []; const pl = s.plants[0]; const os = s.orders.map(order).filter(o => o.status !== "Completed");
     if (pl) opts.push({ kind: "sto", title: `Transfer ${Math.min(pl.free, s.short)} from ${pl.plant}`, text: `Arrives in ${pl.transit}; cost ${money(pl.cost)}. Covers ${pl.free >= s.short ? "the full shortage" : pl.free + " of " + s.short}; keeps ${os.filter(o => o.risk === "High").map(o => o.id).join(", ") || "all orders"} on time.`, type: "Stock transport order", object: `${Math.min(pl.free, s.short)} × ${s.id} from ${pl.plant.split(" ")[0]} to 1010` });
-    if (s.altMat) opts.push({ kind: "alt", title: "Use approved alternate material", text: `${s.altMat}. Needs reservation change on affected orders; no cost impact.`, type: "Reschedule production order", object: `Switch reservations to ${s.altMat.split(" ")[0]} on ${os[0].id}` });
+    if (s.altMat) opts.push({ kind: "alt", title: "Use approved alternate material", text: `${s.altMat}. Needs reservation change on affected orders; no cost impact.`, type: null, object: "" });
     opts.push({ kind: "exp", title: `Expedite PO ${s.po} with ${s.supplier}`, text: `Request pull-in from ${fmtD(s.receipt)} by 2 days through the Cherrywork Supplier Collaboration Portal. Supplier confidence 60%; expedite fee ~$1,200.`, type: "Supplier expedite request", object: `PO ${s.po} pull-in to ${fmtD(s.receipt)} − 2 days` });
-    const low = os.filter(o => o.rc.startsWith("C") || o.rc.startsWith("B")).slice(-1)[0];
-    if (low) opts.push({ kind: "seq", title: "Prioritise strategic orders", text: `Allocate the ${s.stock} units in stock to Class A orders first; delay ${low.id} (${low.rc}) by 3 days.`, type: "Reschedule production order", object: `${low.id} delayed 3 days; stock allocated to Class A` });
     return opts;
   }
   $("#sdGen").addEventListener("click", () => {
@@ -2202,10 +2188,11 @@ window.PROTO = {
     steps.forEach((t, i) => setTimeout(() => { $$(".thinking div", box).forEach(d => d.classList.add("ok")); box.querySelector(".thinking").insertAdjacentHTML("beforeend", `<div>${t}</div>`); }, 350 * (i + 1)));
     setTimeout(() => {
       const opts = recoveryOptions(s);
-      box.innerHTML = opts.map((o, i) => { const r = WB_REL(o.type); const off = isR1() && r === "R2";
-        return `<label class="option ${off ? "rel-off" : ""}"><input type="radio" name="ropt" value="${i}" ${i === 0 ? "checked" : ""} ${off ? "disabled" : ""}><div><div class="rank">${i === 0 ? "RECOMMENDED" : "OPTION " + (i + 1)} ${relChip(r)}</div><b>${esc(o.title)}</b><div class="mini">${esc(o.text)}</div></div></label>`; }).join("")
+      box.innerHTML = opts.map((o, i) => { const r = o.type ? WB_REL(o.type) : ""; const off = isR1() && r === "R2";
+        return `<label class="option ${off ? "rel-off" : ""}"><input type="radio" name="ropt" value="${i}" ${i === 0 ? "checked" : ""} ${off ? "disabled" : ""}><div><div class="rank">${i === 0 ? "RECOMMENDED" : "OPTION " + (i + 1)} ${r ? relChip(r) : '<span class="chip">Advice only, no SAP posting</span>'}</div><b>${esc(o.title)}</b><div class="mini">${esc(o.text)}</div></div></label>`; }).join("")
         + `<div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.5rem"><span class="mini">Sources: S/4HANA live ${NOW} · BigQuery ${CDC}</span><button class="btn primary" id="sdSubmit">Submit for approval</button></div>`;
       $("#sdSubmit").addEventListener("click", () => { const o = opts[+$("input[name=ropt]:checked", box).value];
+        if (!o.type) { App.toast("Advice only: the planner changes reservations in SAP; Mission Control does not post this."); return; }
         addProposal({ type: o.type, object: o.object, ref: s.id, reason: o.text }); });
     }, 1500);
   });
@@ -2245,7 +2232,7 @@ window.PROTO = {
         p.status = "Rejected"; p.doc = "Rejected: " + $("#rjText", body).value.trim().slice(0, 40); App.onShow.approvals(); syncFrame(); App.toast(`${p.id} rejected`, "danger"); } }] });
   }
   function postProposal(p) {
-    const doc = { "Stock transport order": "STO 45000218" + (70 + db.seq % 30), "Reschedule production order": `Order change ${p.ref} · 07:1${db.seq % 10}`, "Maintenance notification": "PM notification 1000451" + (db.seq % 10), "Supplier expedite request": "Expedite request SCP-" + (8800 + db.seq) }[p.type] || "Document 9000" + db.seq;
+    const doc = { "Stock transport order": "STO 45000218" + (70 + db.seq % 30), "Reschedule production order": `Order change ${p.ref} · 07:1${db.seq % 10}`, "Maintenance notification": "PM notification 1000451" + (db.seq % 10), "Supplier expedite request": "Expedite request SCP-" + (8800 + db.seq), "Production order confirmation": "Confirmation 0000" + (5100 + db.seq), "Quality notification": "Quality notification 2000" + (3100 + db.seq) }[p.type] || "Document 9000" + db.seq;
     const steps = [["Re-validating live in S/4HANA", "Situation unchanged (checked at " + NOW + ")"], ["Approval recorded", `${db.users[App.role]} · SAP Build Process Automation`], ["Posting via SAP Integration Suite", "Released S/4HANA API, principal propagation"], ["SAP document created", doc]];
     App.modal({ title: `Posting ${p.id} to SAP`, body: `<ul class="steps" id="pSteps">${steps.map((s, i) => `<li data-i="${i}"><span class="b">${i + 1}</span><div><b>${s[0]}</b><div class="mini" hidden>${esc(s[1])}</div></div></li>`).join("")}</ul>`, actions: [{ label: "Close", kind: "primary" }] });
     steps.forEach((s, i) => setTimeout(() => { const li = $(`#pSteps li[data-i="${i}"]`); if (!li) return; li.classList.add("ok"); li.querySelector(".b").textContent = "✓"; li.querySelector(".mini").hidden = false; }, 450 * (i + 1)));
@@ -2288,7 +2275,7 @@ window.PROTO = {
   /* ===================== 15 Agent hub ===================== */
   App.onShow["agent-hub"] = () => {
     const on = db.agents.filter(a => a.on).length;
-    $("#hubKpis").innerHTML = [kpiHTML("Agents active", `${on}/${db.agents.length}`, "Joule Studio"), kpiHTML("Questions this week", "412", "▲ 18% vs last week", "up"),
+    $("#hubKpis").innerHTML = [kpiHTML("Agents active", `${on}/${db.agents.length}`, "SAP AI Core"), kpiHTML("Questions this week", "412", "▲ 18% vs last week", "up"),
       kpiHTML("Answer accuracy", "90%", "golden set, 96 cases", "up"), kpiHTML("Proposals → posted", "26 → 21", "81% approval rate")].join("");
     const admin = App.role === "admin";
     $("#hubAgents").innerHTML = db.agents.map(a => `<div class="agent-card ${isR1() && a.rel === "R2" ? "rel-off" : ""}"><div class="ah"><span class="ai">${icon("bot")}</span><div style="flex:1"><h3>${esc(a.name)} ${relChip(a.rel, true)}</h3><span class="mini">${esc(a.role)}</span></div>
@@ -2296,7 +2283,7 @@ window.PROTO = {
       <p>${esc(a.desc)}</p><div class="mini">Accelerator: ${esc(a.from)}</div>
       <div style="display:flex;gap:.3rem;flex-wrap:wrap">${a.tools.map(t => `<span class="chip">${t}</span>`).join("")}</div>
       <div class="mini">Eval ${a.eval}% · ${a.calls} calls / wk · Model via SAP AI Core generative AI hub</div></div>`).join("");
-    $("#hubTools").innerHTML = db.tools.map(t => `<tr><td><b>${t.name}</b></td><td>${esc(t.src)}</td><td><span class="chip ${t.mode === "Read" ? "i" : "w"}">${t.mode}</span> ${t.name.startsWith("propose_sto") ? relChip("R1>R2") : t.name === "get_asset_health" ? relChip("R2", true) : relChip("R1", true)}</td><td>${t.lat}</td></tr>`).join("");
+    $("#hubTools").innerHTML = db.tools.map(t => `<tr><td><b>${t.name}</b></td><td>${esc(t.src)}</td><td><span class="chip ${t.mode === "Read" ? "i" : "w"}">${t.mode}</span> ${t.rel ? relChip(t.rel, true) : t.name.startsWith("propose_sto") ? relChip("R1>R2") : t.name === "get_asset_health" ? relChip("R2", true) : relChip("R1", true)}</td><td>${t.lat}</td></tr>`).join("");
   };
   $("#hubAgents").addEventListener("change", (e) => { const a = db.agents.find(x => x.id === e.target.dataset.agent); if (a) { a.on = e.target.checked; App.onShow["agent-hub"](); App.toast(`${a.name} ${a.on ? "enabled" : "disabled"} · change logged`); } });
 
@@ -2340,11 +2327,12 @@ window.PROTO = {
     const wcN = (q.match(WC_RE) || [])[0];
 
     if (/risk.*today|biggest risk|today.*risk|what needs (my )?attention|worry/.test(t)) return risks();
+    if (/\boee\b|downtime/.test(t)) return oee();
     if (/recovery|mitigat|recover|expedite/.test(t)) return recovery(comp || "SK-2041", /all/.test(t));
     if (/other plant|available|alternative|where else/.test(t) && comp) return interplant(comp);
     if (/customer|sales order|commitment|at risk from/.test(t) && (comp || /short/.test(t))) return shortageImpact(comp || "SK-2041");
     if (/short/.test(t) && !oid) return shortagesList();
-    if (/rebalance|pull .*into|move .*shift|reschedul/.test(t)) return schedule(oid, wcN);
+    if (/rebalance|pull .*into|move .*shift|reschedul|schedule|load/.test(t) && !/status/.test(t)) return schedule(oid, wcN);
     if (/troubleshoot|vibration|cnc|spindle|maintenance/.test(t)) return equipment();
     if (/heat treat|batch/.test(t) && /delay|happen|wait/.test(t) && !oid) return heatTreat();
     if (/why/.test(t) && wcN && !oid) return bottleneck(wcByName(wcN));
@@ -2358,7 +2346,7 @@ window.PROTO = {
     if (wcN) return bottleneck(wcByName(wcN));
     if (/status/.test(t)) return orderStatus(oid || "1000482317");
     return { agents: ["Operations Agent"], tools: [], srcs: [], html: `<p>I can help with the live shop floor, production orders and operations, shortages, the schedule and write-back to SAP. For example:</p>
-      <ul><li>What are my biggest risks today?</li><li>Why is production order 1000482317 waiting?</li><li>How much time has been captured against operation 0030 of 1000482314?</li><li>Which customers are at risk from SK-2041?</li><li>Rebalance Milling for the next 48 hours</li></ul>` };
+      <ul><li>What are my biggest risks today?</li><li>Why is production order 1000482317 waiting?</li><li>How much time has been captured against operation 0030 of 1000482314?</li><li>Which customers are at risk from SK-2041?</li><li>Troubleshoot CNC-T04 spindle vibration</li><li>Where are my OEE losses today?</li></ul>` };
   }
   const T = (rows, head) => `<table class="mtable">${head ? `<tr>${head.map(h => `<th>${h}</th>`).join("")}</tr>` : ""}${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</table>`;
 
@@ -2389,9 +2377,9 @@ window.PROTO = {
     return { agents: ["Operations Agent", "Exception Investigator"], tools: ["get_order_status", "get_operation_history", "get_component_coverage"], srcs: [SRC.s4, SRC.bq, SRC.cap], ctx: { order: id, comp: s && s.id },
       html: `<p><b>${o.id}</b> · ${esc(o.desc)} · ${o.qty} EA for ${esc(o.customer)} (SO ${o.so}), need <b>${fmtD(o.need)}</b>.</p><p>${reason}</p>
       ${s ? `<p>Impact: ${s.orders.length} orders share this shortage. Next receipt ${fmtD(s.receipt)} (PO ${s.po}) is ${daysTo(s.receipt) - daysTo(o.need)} day(s) after the need date.</p><p><b>Options:</b> transfer from ${s.plants[0] ? s.plants[0].plant + " (" + s.plants[0].free + " free, " + s.plants[0].transit + ")" : "another plant"}${s.altMat ? ", or use " + s.altMat.split(" (")[0] : ""}, or expedite the PO.</p>` : ""}
-      ${o.state === "Queued" ? `<p><b>Option:</b> move a Class C operation out of the current shift to protect this order.</p>` : ""}
+      ${o.state === "Queued" ? `<p>The work center is the constraint; see the bottleneck analysis for the cause.</p>` : ""}
       ${db.notes.filter(n => n.order === id).map(n => `<p class="mini">Note from ${esc(n.author)}: “${esc(n.text)}”</p>`).join("")}`,
-      acts: [{ label: "Open order", go: "order-detail?id=" + id }, ...(s ? [{ label: "Generate recovery plan", ask: "Generate a recovery plan for " + s.id }] : []), ...(o.state === "Queued" ? [{ label: "Rebalance " + op.name, ask: "Rebalance " + op.name + " for the next 48 hours" }] : [])] };
+      acts: [{ label: "Open order", go: "order-detail?id=" + id }, ...(s ? [{ label: "Generate recovery plan", ask: "Generate a recovery plan for " + s.id }] : []), ...(o.state === "Queued" ? [{ label: "Why is " + op.name + " constrained?", ask: "Why is " + op.name + " constrained?" }] : [])] };
   }
   function orderStatus(id) {
     const o = order(id); if (!o) return notFound(id); const op = o.ops[o.curIdx];
@@ -2459,35 +2447,32 @@ window.PROTO = {
   }
   function schedule(id, wcN) {
     const w = wcN ? wcByName(wcN) : wcById("MIL-02");
-    const o = id ? order(id) : null;
-    if (o && w.id === "MIL-02" && !wcN) { /* order pull-in */ }
-    const over = db.slots.map(s => ({ s, L: loadOf(w.id, s.id) })).filter(x => x.L > capOf(w.id));
-    return { agents: ["Planning & Order Release"], tools: ["simulate_schedule"], srcs: [SRC.s4, "CAP scheduling service · " + NOW],
-      html: o ? `<p>Pulling <b>${o.id}</b> into today's shift at ${wcById(o.ops[o.curIdx].wc).name}: target load would rise to ${Math.round((loadOf(o.ops[o.curIdx].wc, "T1") + 6) / capOf(o.ops[o.curIdx].wc) * 100)}%. Feasible if one Class C operation moves to Shift 3.</p>`
-        : `<p><b>${w.name}</b> (${w.id}, capacity ${capOf(w.id)} h/shift) is over capacity in ${over.length} slot(s): ${over.map(x => `${x.s.day} ${x.s.label} ${Math.round(x.L / capOf(w.id) * 100)}%`).join(", ") || "none"}.</p>
-        <p><b>Suggested moves:</b></p><ul><li>Move 1000482338 op 0030 (Class C, need 4 Nov) from Today Shift 2 → Today Shift 3: Shift 2 drops to ~${Math.round((loadOf(w.id, "T2") - 16) / capOf(w.id) * 100)}%.</li><li>Keep Atlas Offshore 1000482314 (Class A, need 23 Oct) in Shift 1.</li><li>Approve 2 h overtime on Shift 3 to absorb 1000482341.</li></ul><p class="mini">All need dates held. Moves become reschedule proposals for the planner.</p>`,
-      acts: [{ label: "Open schedule", go: "schedule" }, { label: "Submit move of 1000482338", propose: { type: "Reschedule production order", object: "1000482338 op 0030 → Today Shift 3", ref: "1000482338", reason: "Rebalance Milling Shift 2; need date 4 Nov held." } }] };
+    const over = db.slots.map(sl => ({ sl, L: loadOf(w.id, sl.id) })).filter(x => x.L > capOf(w.id));
+    return { rel: "R2", agents: ["Planning & Order Release"], tools: ["get_schedule_load"], srcs: [SRC.s4, "CAP schedule service · " + NOW],
+      html: `<p><b>${w.name}</b> (${w.id}, capacity ${capOf(w.id)} h/shift) is over capacity in ${over.length} slot(s): ${over.map(x => `${x.sl.day} ${x.sl.label} ${Math.round(x.L / capOf(w.id) * 100)}%`).join(", ") || "none"}.</p>
+        <p>The schedule board is <b>view only</b>: Mission Control shows load, plan vs actual and adherence, and flags unscheduled orders. It does not rebalance or reschedule orders; planners make those changes in SAP.</p>`,
+      acts: [{ label: "Open schedule", go: "schedule" }, { label: "Why is " + w.name + " constrained?", ask: "Why is " + w.name + " constrained?" }] };
   }
   function bottleneck(w) {
     w = w || wcById("MIL-02");
     const txt = (WC_ANALYSIS[w.id] || `<p>${w.name} is running within thresholds: load ${w.load}%, queue ${w.queueH} h.</p>`);
     return { agents: ["Exception Investigator", "OEE & Downtime Analysis"], tools: ["get_operation_history", "get_oee_losses", "get_machine_states"], srcs: [SRC.bq, SRC.ms, SRC.s4],
       html: `<p><b>${w.name}</b> (${w.id}): load ${w.load}%, queue ${w.queueH} h, WIP ${w.wip}, output ${w.out}/${w.plan}.</p>${txt}`,
-      acts: [{ label: "Open work center", go: "workcenter?id=" + w.id }, ...(w.state === "d" ? [{ label: "Rebalance with agent", ask: `Rebalance ${w.name} for the next 48 hours` }] : [])] };
+      acts: [{ label: "Open work center", go: "workcenter?id=" + w.id }, ...(w.id === "TRN-02" ? [{ label: "Troubleshoot CNC-T04", ask: "Troubleshoot CNC-T04 spindle vibration" }] : [])] };
   }
   function heatTreat() {
-    return { agents: ["Exception Investigator", "Planning & Order Release"], tools: ["get_operation_history", "simulate_schedule"], srcs: [SRC.bq, SRC.s4],
+    return { agents: ["Exception Investigator"], tools: ["get_operation_history"], srcs: [SRC.bq, SRC.s4],
       html: `<p>If Heat Treat batches slip another 4 h, <b>1000482325</b> (Northern Basin, need 28 Oct) and <b>1000482333</b> (Meridian, need 29 Oct) each lose about half a day but stay on time. Valve X <b>1000482314</b> would hit Heat Treat on Shift 3 and lose its buffer for 23 Oct.</p><p><b>Recommendation:</b> release the next batch at 70% fill for Class A loads.</p>`,
       acts: [{ label: "Open Heat Treat", go: "workcenter?id=HT-01" }] };
   }
   function equipment() {
-    return { rel: "R2", agents: ["Equipment Troubleshooting"], tools: ["get_asset_health", "search_sops", "propose_pm_notification"], srcs: [SRC.ms, "S/4HANA PM history · " + NOW, "SOP library"],
+    return { agents: ["Equipment Troubleshooting"], tools: ["get_asset_health", "search_sops", "propose_pm_notification"], srcs: [SRC.ms, "S/4HANA PM history · " + NOW, "SOP library"],
       html: `<p><b>CNC-T04</b> (Turning, TRN-02): spindle vibration 7.1 mm/s, alert 6.0, rising for 3 shifts. Temperature +6 °C. The same pattern preceded a front-bearing failure in March (notification 10003987).</p>
       <p><b>Suggested steps</b> (SOP MT-TRN-014): check spindle run-out, inspect front bearing, verify drawbar clamping force. Window: Shift 3 changeover (45 min).</p>`,
       acts: [{ label: "Draft maintenance notification", propose: { type: "Maintenance notification", object: "CNC-T04 spindle vibration (2)", ref: "TRN-02", reason: "Vibration 7.1 mm/s above 6.0 alert, rising 3 shifts; bearing wear suspected." } }, { label: "Open Turning", go: "workcenter?id=TRN-02" }] };
   }
   function oee() {
-    return { rel: "R2", agents: ["OEE & Downtime Analysis"], tools: ["get_oee_losses", "get_machine_states"], srcs: [SRC.ms, SRC.bq],
+    return { agents: ["OEE & Downtime Analysis"], tools: ["get_oee_losses", "get_machine_states"], srcs: [SRC.ms, SRC.bq],
       html: `<p>Plant OEE today <b>78.4%</b> (▲1.2 pts). Biggest losses:</p>${T([["Milling MIL-02", "69.4%", "Availability: tool-change overrun 1.4 h"], ["Heat Treat HT-01", "74.8%", "Performance: partial batches"], ["Turning TRN-02", "81.0%", "Minor stops on CNC-T04"]], ["Work center", "OEE", "Main loss"])}`,
       acts: [{ label: "Open Operation Summary", go: "operation-summary" }] };
   }
@@ -2500,14 +2485,18 @@ window.PROTO = {
       <p class="muted" style="margin:.2rem 0 .6rem">${when} · ${who}</p>
       <ul style="margin:0;padding-left:1.1rem;line-height:1.7">${items.map(i => `<li>${i}</li>`).join("")}</ul>
       <p style="margin:.7rem 0 0"><span class="chip ${r === "R1" ? "i" : ""}">${sap}</span></p></div>`;
-    $("#rpCols").innerHTML = col("R1", "var(--primary)", "Release 1 · PoC", "Live in week 10, production-ready", "Valve Line 1 · 10–15 users",
-      ["<b>Ask Joule</b> about any order or operation in the area and get the answer in seconds", "<b>See every shortage</b>, the orders and customers it hits, and which plant has stock",
-       "<b>Get a recovery plan</b> and approve a stock transfer that posts to SAP", "<b>Plan the shift:</b> load by work center, plan vs actual, what-if moves",
-       "<b>Watch the area live</b> on the digital twin, with alerts for waiting time, WIP, shortages and capacity"], "1 live SAP action: stock transport order")
-      + col("R2", "#6d4fd0", "Release 2 · MVP", "Live in week 22", "Whole pilot plant · 30–50 users",
-      ["<b>Everything in Release 1</b>, for every production area", "<b>Ask Joule anywhere:</b> every screen, tablet, Microsoft Teams",
-       "<b>Maintenance and quality alerts</b> on the twin, with troubleshooting help", "<b>Act in SAP from the app:</b> schedule changes, PO expedites, maintenance notifications, confirmations",
-       "<b>Keep the team aligned:</b> order notes, tags and production-meeting actions"], "5 live SAP actions");
+    $("#rpCols").innerHTML = col("R1", "var(--primary)", "Release 1 · Pilot", "Live in week 16, production-ready", "Valve Line 1 · 10–15 users",
+      ["<b>Ask the Operations Agent</b> about any order, operation or machine in the area and get the answer in seconds", "<b>See every shortage</b>, the orders and customers it hits, and which plant has stock",
+       "<b>Get a recovery plan</b> and approve a stock transfer that posts to SAP", "<b>Maintenance and OEE:</b> alerts from machine signals, troubleshooting help, OEE losses, maintenance notification posted to SAP",
+       "<b>Watch the area live</b> on the digital twin, with alerts for waiting time, WIP, shortages, capacity and maintenance"], "2 live SAP transactions: STO, maintenance notification")
+      + col("R2", "#6d4fd0", "Release 2 · MVP", "Live in week 32", "Whole pilot plant · 30–50 users",
+      ["<b>Everything in Release 1</b>, for every production area", "<b>Operations Agent anywhere:</b> every screen, tablet, Microsoft Teams",
+       "<b>Schedule board:</b> load by work center and shift, plan vs actual, adherence (view only, no rebalancing)", "<b>Quality alerts</b> with root cause",
+       "<b>Three more SAP transactions:</b> PO expedite, production order confirmation, quality notification", "<b>Keep the team aligned:</b> order notes, tags and production-meeting actions"], "5 live SAP transactions");
+    $("#rpSap").innerHTML = [["Stock transport order", "Shortage recovery plan", "API_PURCHASEORDER_PROCESS_SRV", "Materials Manager", "R1"], ["Maintenance notification", "Maintenance alert / Equipment Troubleshooting Agent", "API_MAINTNOTIFICATION", "Maintenance Manager", "R1"],
+      ["PO expedite (delivery date update)", "Shortage recovery via Supplier Collaboration Portal", "API_PURCHASEORDER_PROCESS_SRV", "Materials Manager", "R2"], ["Production order confirmation", "Order page or shop-floor tablet", "API_PROD_ORDER_CONFIRMATION_2_SRV", "Production Supervisor", "R2"],
+      ["Quality notification", "Quality alert / Quality Monitoring Agent", "API_QUALITYNOTIFICATION", "Plant Manager", "R2"]].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td class="mini">${r[2]}</td><td>${r[3]}</td><td>${relChip(r[4])}</td></tr>`).join("")
+      + `<tr><td colspan="5" class="mini"><b>Not posted by Mission Control:</b> MRP runs or MRP results, planned order / requisition conversion, rescheduling or rebalancing production orders, master data.</td></tr>`;
     const bc = { "Accelerator-led": "s", Hybrid: "w", Custom: "" };
     $("#rpRows").innerHTML = db.features.map(f => `<tr data-go="${f.go}"><td><b>${f.id}</b></td><td>${esc(f.name)}</td><td><span class="chip ${bc[f.build]}">${f.build}</span></td><td class="mini">${esc(f.acc)}</td>
       <td>${f.r1 === "—" ? '<span class="muted">—</span>' : `<span class="rel r1">R1</span> ${esc(f.r1)}`}</td><td>${f.r2 === "—" ? '<span class="muted">—</span>' : `<span class="rel r2">R2</span> ${esc(f.r2)}`}</td></tr>`).join("");
@@ -2516,7 +2505,7 @@ window.PROTO = {
   /* ---------- chat UI ---------- */
   const PROMPTS = ["What are my biggest risks today?", "Why is production order 1000482317 waiting?", "What is the current status of production order 1000482314?", "What is the status of operation 0030 for 1000482314?",
     "How much time has been captured against operation 0020 of 1000482327?", "Which operations are open or pending for production order 1000482330?", "Where is production order 1000482311 in the process?",
-    "Which customers are at risk from SK-2041?", "Where else is SK-2041 available?", "Generate a recovery plan for SK-2041", "Rebalance Milling for the next 48 hours", "Troubleshoot CNC-T04 spindle vibration"];
+    "Which customers are at risk from SK-2041?", "Where else is SK-2041 available?", "Generate a recovery plan for SK-2041", "Troubleshoot CNC-T04 spindle vibration", "Where are my OEE losses today?", "Why is Milling constrained?"];
   function makeChat(host, { compact }) {
     host.innerHTML = `<div class="chat"></div><div class="suggest"></div><form class="chat-input"><input placeholder="Ask about orders, operations, shortages, schedule…" aria-label="Message"><button class="btn primary" type="submit">${icon("send")}</button></form>`;
     const box = $(".chat", host), sug = $(".suggest", host), form = $("form", host), input = $("input", form);
@@ -2530,10 +2519,10 @@ window.PROTO = {
       if (App.current === "order-detail") ctx.order = App.params.id; if (App.current === "shortage-detail") ctx.comp = App.params.id;
       box.insertAdjacentHTML("beforeend", `<div class="msg user">${esc(q)}</div>`);
       let a = answer(q, ctx); Object.assign(ctx, a.ctx || {});
-      if (isR1() && a.rel === "R2") a = { agents: ["Operations Agent"], tools: [], srcs: [], html: `<p>${relChip("R2")} That needs the ${a.agents[0]} agent, which goes live in <b>Release 2 · MVP</b> (week 22). In Release 1 I can help with order and operation status, why orders wait, shortages and recovery, and the schedule for Valve Line 1.</p>`,
+      if (isR1() && a.rel === "R2") a = { agents: ["Operations Agent"], tools: [], srcs: [], html: `<p>${relChip("R2")} That needs the ${a.agents[0]} agent, which goes live in <b>Release 2 · MVP</b> (week 32). In Release 1 I can help with order and operation status, why orders wait, shortages and recovery, and the schedule for Valve Line 1.</p>`,
         acts: [{ label: "What are my biggest risks today?", ask: "What are my biggest risks today?" }] };
       const bot = document.createElement("div"); bot.className = "msg bot";
-      const steps = [`Operations Agent: understanding request (Joule)`, ...a.agents.slice(1).map(n => `Routing to ${n} agent`), ...a.tools.slice(0, 3).map(t => `Calling tool ${t}`)];
+      const steps = [`Operations Agent: understanding request (SAP AI Core)`, ...a.agents.slice(1).map(n => `Routing to ${n} agent`), ...a.tools.slice(0, 3).map(t => `Calling tool ${t}`)];
       bot.innerHTML = `<div class="thinking"></div>`; box.appendChild(bot); box.scrollTop = box.scrollHeight;
       steps.forEach((s, i) => setTimeout(() => { const th = $(".thinking", bot); if (!th) return; $$("div", th).forEach(d => d.classList.add("ok")); th.insertAdjacentHTML("beforeend", `<div>${esc(s)}</div>`); box.scrollTop = box.scrollHeight; }, 260 * i));
       setTimeout(() => {
